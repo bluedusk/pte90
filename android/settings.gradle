@@ -1,0 +1,3 @@
+rootProject.name = 'pte90'
+
+include ':app'
