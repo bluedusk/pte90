@@ -13,6 +13,8 @@ import Tab3 from './components/tab3';
 import Tab4 from './components/tab4';
 import ReadAloud from './components/testItem/readAloud';
 import ReadAloudAdd from './components/testItem/readAloudAdd';
+import RetellLecture from './components/testItem/retellLecture';
+import RLDetail from './components/testItem/rlDetail';
 import UserCenter from './components/me/userCenter';
 
 
@@ -39,8 +41,10 @@ class AppRoutes extends Component {
               <Scene key="tab2" component={Tab2} title="Tab2" />
               <Scene key="tab3" component={Tab3} title="Tab3" />
               <Scene key="tab4" component={UserCenter} title="Tab4" />
-              <Scene key="readAloud" component={ReadAloud} title="Tab4" />
-              <Scene key="readAloudAdd" component={ReadAloudAdd} title="Tab4" />
+              <Scene key="readAloud" component={ReadAloud} title="ReadAloud" />
+              <Scene key="readAloudAdd" component={ReadAloudAdd} title="ReadAloudAdd" />
+              <Scene key="retellLecture" component={RetellLecture} title="RetellLecture" />
+              <Scene key="rlDetail" component={RLDetail} title="RLDetail" />
               <Scene key="userCenter" component={UserCenter} title="Tab4" />
             </Scene>
           </RouterWithRedux>

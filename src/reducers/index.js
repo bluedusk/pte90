@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 import ItemsReducer from './itemsReducer';
+import CurrentItemReducer from './currentItemReducer';
 
 import routes from './routes';
 
 export default combineReducers({
   routes,
-  items: ItemsReducer
+  items: ItemsReducer,
+  currentItem: CurrentItemReducer
 });

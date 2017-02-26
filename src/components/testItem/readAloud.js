@@ -1,14 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Dimensions } from 'react-native';
 import { Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 import styles from '../../styles/itemsMainStyle';
 
-const deviceWidth = Dimensions.get('window').width;
 
-// Entrance of Test Items, show menu
 class ReadAloud extends React.Component {
 
   constructor(props){
@@ -16,10 +13,42 @@ class ReadAloud extends React.Component {
     this.state = {
       toggle:0
     }
-
   }
 
-
+  renderList(){
+    //console.log(this.props);
+    const { array } = this.props.itemList;
+    if(!array){
+      return <Text>loading...</Text>
+    }
+    let res = array.map(item =>{
+      return(
+        <Card style={styles.mb} key={item.itemId}>
+          <CardItem content bordered>
+            <Body>
+              <Text>{item.itemText}</Text>
+            </Body>
+          </CardItem>
+          <CardItem style={{paddingVertical: 0}}>
+            <Left>
+              <Button transparent>
+                <Icon active name="thumbs-up" />
+                <Text>  {item.tested} 考过</Text>
+              </Button>
+            </Left>
+            <Right>
+              <Button transparent>
+                <Icon active name="thumbs-up" />
+                <Text> 讨论</Text>
+              </Button>
+            </Right>
+          </CardItem>
+        </Card>
+      );
+    });
+    //console.log(res);
+    return res;
+  }
 
   render() {
     return (
@@ -38,83 +67,7 @@ class ReadAloud extends React.Component {
             </Right>
         </Header>
         <Content padder>
-
-          <Card style={styles.mb}>
-
-            <CardItem content bordered>
-              <Body>
-                <Text>
-                  <Text style={{color:'red'}}>fff</Text>
-                NativeBase is a free and, source framework that enables developers
-                to build high-quality mobile apps using React Native iOS and Android apps
-                with a fusion of ES6.{'\n'}{'\n'}
-                NativeBase builds a layer on top of React Native that provides you with
-                basic set of components for mobile application development.
-              </Text>
-              </Body>
-            </CardItem>
-            <CardItem style={{paddingVertical: 0}}>
-              <Right>
-                <Button transparent>
-                  <Icon active name="thumbs-up" />
-                  <Text>  126 考过</Text>
-                </Button>
-              </Right>
-            </CardItem>
-          </Card>
-
-          <Card style={styles.mb}>
-
-            <CardItem content bordered>
-              <Body>
-                <Text>
-                NativeBase is a free and, source framework that enables developers
-                to build high-quality mobile apps using React Native iOS and Android apps
-                with a fusion of ES6.
-                NativeBase builds a layer on top of React Native that provides you with
-                basic set of components for mobile application development.
-              </Text>
-              </Body>
-            </CardItem>
-            <CardItem style={{paddingVertical: 0}}>
-              <Right>
-                <Button transparent>
-                  <Icon active name="thumbs-up" />
-                  <Text>  126 考过</Text>
-                </Button>
-              </Right>
-            </CardItem>
-          </Card>
-
-          <Card style={styles.mb}>
-
-            <CardItem content bordered>
-              <Body>
-                <Text>
-                NativeBase is a free and, source framework that enables developers
-                to build high-quality mobile apps using React Native iOS and Android apps
-                with a fusion of ES6.
-                NativeBase builds a layer on top of React Native that provides you with
-                basic set of components for mobile application development.
-              </Text>
-              </Body>
-            </CardItem>
-            <CardItem style={{paddingVertical: 0}}>
-              <Left>
-                <Button transparent>
-                  <Icon active name="thumbs-up" />
-                  <Text>  126 考过</Text>
-                </Button>
-              </Left>
-              <Right>
-                <Button transparent>
-                  <Icon active name="thumbs-up" />
-                  <Text> 讨论</Text>
-                </Button>
-              </Right>
-            </CardItem>
-          </Card>
-
+          { this.renderList() }
         </Content>
       </Container>
 
@@ -124,4 +77,8 @@ class ReadAloud extends React.Component {
 
 }
 
-export default connect()(ReadAloud);
+const mapStateToProps = (state) => {
+  return { itemList : state.items };
+}
+
+export default connect(mapStateToProps)(ReadAloud);

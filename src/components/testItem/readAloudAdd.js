@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { View, Dimensions, TextInput } from 'react-native';
-import { Container, Header, Title, Spinner, Item, Label, Input, Form, Text, Button, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
+import { Segment, Container, Header, Title, Spinner, Item, Label, Input, Form, Text, Button, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 import styles from '../../styles/itemsMainStyle';
@@ -65,7 +65,10 @@ class ReadAloud extends React.Component {
             </Item>
           </Form>
         </Card>
-
+        <Segment>
+            <Button first><Text>原文</Text></Button>
+            <Button last active><Text>答案</Text></Button>
+        </Segment>
           <Text numberOfLines={40}>
             {this.state.bodyText}
           </Text>

@@ -1,11 +1,11 @@
 import { Actions } from 'react-native-router-flux';
 import {
-  FETCH_ITEMS
+  FETCH_ITEM
 } from './types';
 
 
 
-export const fetchItems = (type) => {
+export const fetchCurItem = (id) => {
 
   switch (type) {
     case 'ra':
@@ -16,6 +16,8 @@ export const fetchItems = (type) => {
       break;
     default:
   }
+
+  console.log(getState());
 
   return async (dispatch, getState) => {
     try {

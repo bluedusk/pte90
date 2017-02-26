@@ -1,13 +1,9 @@
 import {
-  FETCH_ITEMS
+  FETCH_ITEMS,
+  FETCH_ITEM
 } from '../actions/types';
 
-const INITIAL_STATE = {
-  type: '',
-  array: [],
-  error: '',
-  loading: false
-};
+const INITIAL_STATE = {};
 
 export default (state = INITIAL_STATE, action) => {
   console.log(action.payload);

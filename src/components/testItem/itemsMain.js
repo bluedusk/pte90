@@ -56,13 +56,13 @@ class ItemsMain extends React.Component {
           </CardItem>
           <View style={this.state.toggle === 1 ? {} : {height: 0, opacity: 0}}>
 
-          <CardItem button onPress={this.props.fetchItems}>
+          <CardItem button onPress={()=>{this.props.fetchItems('ra')}}>
             <Text>Read Aloud</Text>
             <Right>
               <Icon name="arrow-forward" />
             </Right>
           </CardItem>
-          <CardItem>
+          <CardItem button onPress={()=>{this.props.fetchItems('rl')}}>
             <Text>Retell Lecture</Text>
             <Right>
               <Icon name="arrow-forward" />
@@ -172,7 +172,9 @@ class ItemsMain extends React.Component {
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({fetchItems:fetchItems}, dispatch);
+  return bindActionCreators({
+    fetchItems:fetchItems
+  }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(ItemsMain);
