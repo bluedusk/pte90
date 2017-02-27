@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { List, ListItem, Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import { fetchCurrItem } from '../../actions/currItemAction'
 
 import styles from '../../styles/styles';
 
@@ -12,19 +14,24 @@ class RetellLecture extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      toggle:0
+      selectedItemId:''
     }
+  }
+
+  onItemPress(id){
+    Actions.rlDetail({id:id});
+    // this.props.fetchCurrItem(id);
   }
 
   renderList(){
     const { array } = this.props.itemList;
-    if(!array){
+    if(!array || array.length == 0 ){
       return <Text>loading...</Text>
     }
     return (
       <List
         dataArray={array} renderRow={data =>
-          <ListItem button onPress={()=>{Actions['rlDetail']({id:data.itemId})}}>
+          <ListItem button onPress={()=>this.onItemPress(data.itemId)}>
             <Text>{data.topic}</Text>
             <Right>
               <Icon name="arrow-forward" />
@@ -64,8 +71,13 @@ class RetellLecture extends React.Component {
 
 }
 
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({
+    fetchCurrItem:fetchCurrItem
+  }, dispatch);
+}
 const mapStateToProps = (state) => {
   return { itemList : state.items };
 }
 
-export default connect(mapStateToProps)(RetellLecture);
+export default connect(mapStateToProps, mapDispatchToProps)(RetellLecture);

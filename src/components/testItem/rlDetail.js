@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import { Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
@@ -6,35 +7,41 @@ import { Actions } from 'react-native-router-flux';
 import styles from '../../styles/itemsMainStyle';
 
 
-// Entrance of Test Items, show menu
 class RLDetail extends React.Component {
 
   constructor(props){
     super(props);
     this.state = {
-      toggle:0
+      itemIndex: -1
     }
   }
 
-  renderList(){
-    //console.log(this.props);
-    const { item } = this.props;
-    if(!item){
-      return <Text>{this.props.itemId}</Text>
+  componentWillMount(){
+    console.log(this.props.id);
+    console.log(this.props.itemList.array.length);
+    const { array } = this.props.itemList;
+    // const item = test[this.state.toggle];
+    const index = _.findIndex(array, (o) => o.itemId == this.props.id )
+    this.setState({itemIndex:index});
+  }
 
+  renderList(){
+    const { array } = this.props.itemList;
+    if(!this.state.itemIndex === -1){
+      return <Text>loading...</Text>
     }
     return(
       <Card style={styles.mb}>
         <CardItem content bordered>
           <Body>
-            <Text>{item.itemText}</Text>
+            <Text>{array[this.state.itemIndex].itemText}</Text>
           </Body>
         </CardItem>
         <CardItem style={{paddingVertical: 0}}>
           <Left>
             <Button transparent>
               <Icon active name="thumbs-up" />
-              <Text>  {item.tested} 考过</Text>
+              <Text>  {array[this.state.itemIndex].tested} 考过</Text>
             </Button>
           </Left>
           <Right>
@@ -66,6 +73,8 @@ class RLDetail extends React.Component {
         </Header>
         <Content padder>
           { this.renderList() }
+          <Button onPress={()=>this.setState({itemIndex: this.state.itemIndex+1})}>
+          <Text>hi</Text></Button>
         </Content>
       </Container>
 
@@ -76,7 +85,7 @@ class RLDetail extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { currentItem : state.currentItem };
+  return { itemList : state.items };
 }
 
 export default connect(mapStateToProps)(RLDetail);

@@ -18,7 +18,7 @@ class ReadAloud extends React.Component {
   renderList(){
     //console.log(this.props);
     const { array } = this.props.itemList;
-    if(!array){
+    if(!array || array.length == 0){
       return <Text>loading...</Text>
     }
     let res = array.map(item =>{
