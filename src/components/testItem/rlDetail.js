@@ -1,8 +1,9 @@
 import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
+import { Footer, Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import { PagerBtnSet } from '../common/pagerBtnSet';
 
 import styles from '../../styles/itemsMainStyle';
 
@@ -12,7 +13,8 @@ class RLDetail extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      itemIndex: -1
+      itemIndex: -1,
+      arrayLength:-1
     }
   }
 
@@ -20,9 +22,8 @@ class RLDetail extends React.Component {
     console.log(this.props.id);
     console.log(this.props.itemList.array.length);
     const { array } = this.props.itemList;
-    // const item = test[this.state.toggle];
     const index = _.findIndex(array, (o) => o.itemId == this.props.id )
-    this.setState({itemIndex:index});
+    this.setState({itemIndex:index, arrayLength:array.length});
   }
 
   renderList(){
@@ -32,6 +33,15 @@ class RLDetail extends React.Component {
     }
     return(
       <Card style={styles.mb}>
+        <CardItem header bordered>
+          <Left>
+          </Left>
+          <Body>
+            <Title>{array[this.state.itemIndex].topic}</Title>
+          </Body>
+          <Right>
+          </Right>
+        </CardItem>
         <CardItem content bordered>
           <Body>
             <Text>{array[this.state.itemIndex].itemText}</Text>
@@ -51,6 +61,7 @@ class RLDetail extends React.Component {
             </Button>
           </Right>
         </CardItem>
+
       </Card>
     );
   }
@@ -73,16 +84,23 @@ class RLDetail extends React.Component {
         </Header>
         <Content padder>
           { this.renderList() }
-          <Button onPress={()=>this.setState({itemIndex: this.state.itemIndex+1})}>
-          <Text>hi</Text></Button>
         </Content>
+        <PagerBtnSet
+          currIndex = {this.state.itemIndex}
+          endIndex = {this.state.arrayLength}
+          onPress1 = {()=>this.setState({itemIndex: this.state.itemIndex-1})}
+          onPress2 = {()=>this.setState({itemIndex: this.state.itemIndex+1})}
+        />
       </Container>
-
 
     );
   }
 
+  onPress1(){
+    this.setState({itemIndex: this.state.itemIndex-1});
+  }
 }
+
 
 const mapStateToProps = (state) => {
   return { itemList : state.items };
