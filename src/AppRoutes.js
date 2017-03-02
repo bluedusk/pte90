@@ -14,7 +14,11 @@ import Tab4 from './components/tab4';
 import ReadAloud from './components/testItem/readAloud';
 import ReadAloudAdd from './components/testItem/readAloudAdd';
 import RetellLecture from './components/testItem/retellLecture';
+import DI from './components/testItem/di';
+import DIAlbum from './components/testItem/diAlbum';
 import RLDetail from './components/testItem/rlDetail';
+import ASQ from './components/testItem/asq';
+import ASQList from './components/testItem/asqList';
 import UserCenter from './components/me/userCenter';
 
 
@@ -45,6 +49,10 @@ class AppRoutes extends Component {
               <Scene key="readAloudAdd" component={ReadAloudAdd} title="ReadAloudAdd" />
               <Scene key="retellLecture" component={RetellLecture} title="RetellLecture" />
               <Scene key="rlDetail" component={RLDetail} title="RLDetail" />
+              <Scene key="di" component={DI} title="DI" />
+              <Scene key="diAlbum" component={DIAlbum} title="DIAlbum" />
+              <Scene key="asq" component={ASQ} title="ASQ" />
+              <Scene key="asqList" component={ASQList} title="ASQList" />
               <Scene key="userCenter" component={UserCenter} title="Tab4" />
             </Scene>
           </RouterWithRedux>

@@ -31,15 +31,13 @@ class ItemsMain extends React.Component {
     return (
       <Container>
         <Header>
-            <Left>
-              <Title>PTE90</Title>
-            </Left>
+          <Left>
+            <Title>PTE90</Title>
+          </Left>
             <Body>
             </Body>
             <Right>
-              <Button transparent onPress={()=>{}}>
-                <Text>Add</Text>
-              </Button>
+              <Button transparent onPress={()=>{Actions['readAloudAdd']()}}><Text>Add</Text></Button>
             </Right>
         </Header>
       <Content padder>
@@ -68,13 +66,13 @@ class ItemsMain extends React.Component {
               <Icon name="arrow-forward" />
             </Right>
           </CardItem>
-          <CardItem>
+          <CardItem button onPress={()=>{this.props.fetchItems('di')}}>
             <Text>Describe Image</Text>
             <Right>
               <Icon name="arrow-forward" />
             </Right>
           </CardItem>
-          <CardItem>
+          <CardItem button onPress={()=>{this.props.fetchItems('asq')}}>
             <Text>Answer Short Question</Text>
             <Right>
               <Icon name="arrow-forward" />

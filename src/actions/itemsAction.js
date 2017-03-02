@@ -14,6 +14,12 @@ export const fetchItems = (type) => {
     case 'rl':
       Actions['retellLecture']();
       break;
+    case 'di':
+      Actions['diAlbum']();
+      break;
+    case 'asq':
+      Actions['asqList']();
+      break;
     default:
   }
 
