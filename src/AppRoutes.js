@@ -19,6 +19,9 @@ import DIAlbum from './components/testItem/diAlbum';
 import RLDetail from './components/testItem/rlDetail';
 import ASQ from './components/testItem/asq';
 import ASQList from './components/testItem/asqList';
+import ItemDetail from './components/testItem/itemDetail';
+import ItemList from './components/testItem/itemList';
+import RepeatSentence from './components/testItem/rs';
 import UserCenter from './components/me/userCenter';
 
 
@@ -53,6 +56,9 @@ class AppRoutes extends Component {
               <Scene key="diAlbum" component={DIAlbum} title="DIAlbum" />
               <Scene key="asq" component={ASQ} title="ASQ" />
               <Scene key="asqList" component={ASQList} title="ASQList" />
+              <Scene key="rs" component={RepeatSentence} title="RepeatSentence" />
+              <Scene key="itemList" component={ItemList} title="ItemList" />
+              <Scene key="itemDetail" component={ItemDetail} title="ItemDetail" />
               <Scene key="userCenter" component={UserCenter} title="Tab4" />
             </Scene>
           </RouterWithRedux>

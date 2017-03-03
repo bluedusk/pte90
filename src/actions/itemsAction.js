@@ -20,6 +20,12 @@ export const fetchItems = (type) => {
     case 'asq':
       Actions['asqList']();
       break;
+    case 'rs':
+      Actions['rs']();
+      break;
+    case 'fib':
+      Actions['itemList']({header:'FIB'});
+      break;
     default:
   }
 

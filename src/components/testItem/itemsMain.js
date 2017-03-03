@@ -46,7 +46,7 @@ class ItemsMain extends React.Component {
           <CardItem header bordered button onPress={()=>this.onToggle(1)}>
             <Icon active name="logo-facebook" style={{ color: '#3B579D' }} />
             <Text>
-              Reading
+              Speaking
             </Text>
             <Right>
               <Icon name={this.state.toggle === 1 ? "arrow-down" : "arrow-forward"} />
@@ -72,20 +72,14 @@ class ItemsMain extends React.Component {
               <Icon name="arrow-forward" />
             </Right>
           </CardItem>
+          <CardItem button onPress={()=>{this.props.fetchItems('rs')}}>
+            <Text>Repeat Sentence</Text>
+            <Right>
+              <Icon name="arrow-forward" />
+            </Right>
+          </CardItem>
           <CardItem button onPress={()=>{this.props.fetchItems('asq')}}>
             <Text>Answer Short Question</Text>
-            <Right>
-              <Icon name="arrow-forward" />
-            </Right>
-          </CardItem>
-          <CardItem>
-            <Text>Read Aloud</Text>
-            <Right>
-              <Icon name="arrow-forward" />
-            </Right>
-          </CardItem>
-          <CardItem>
-            <Text>Repeat Sentence</Text>
             <Right>
               <Icon name="arrow-forward" />
             </Right>
@@ -131,14 +125,31 @@ class ItemsMain extends React.Component {
             </Right>
           </CardItem>
           <View style={this.state.toggle === 3 ? {} : {height: 0, opacity: 0}}>
-
-          <CardItem>
-            <Text>YouTube</Text>
-            <Right>
-              <Icon name={this.state.toggle === 3 ? "arrow-down" : "arrow-forward"} />
-            </Right>
-          </CardItem>
-        </View>
+            <CardItem>
+              <Text>Single Choice</Text>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </CardItem>
+            <CardItem>
+              <Text>Multi Choice</Text>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </CardItem>
+            <CardItem>
+              <Text>Reorder</Text>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </CardItem>
+            <CardItem button onPress={()=>{this.props.fetchItems('fib')}}>
+              <Text>Fill in blanks</Text>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </CardItem>
+          </View>
         </Card>
 
         <Card style={styles.mb}>
@@ -152,9 +163,38 @@ class ItemsMain extends React.Component {
             </Right>
           </CardItem>
           <View style={this.state.toggle === 4 ? {} : {height: 0, opacity: 0}}>
-
+            <CardItem>
+              <Text>Single Choice</Text>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </CardItem>
+            <CardItem>
+              <Text>Multi Choice</Text>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </CardItem>
+            <CardItem>
+              <Text>Select Missing Word</Text>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </CardItem>
             <CardItem>
               <Text>YouTube</Text>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </CardItem>
+            <CardItem>
+              <Text>YouTube</Text>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </CardItem>
+            <CardItem>
+              <Text>Dictation</Text>
               <Right>
                 <Icon name="arrow-forward" />
               </Right>
