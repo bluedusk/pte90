@@ -26,6 +26,15 @@ export const fetchItems = (type) => {
     case 'fib':
       Actions['itemList']({header:'FIB'});
       break;
+    case 'rsc':
+      Actions['itemListContent']({header:'Single Choice'});
+      break;
+    case 'rmc':
+      Actions['itemListContent']({header:'Multi Choice'});
+      break;
+    case 'reorder':
+      Actions['itemList']({header:'Reorder'});
+      break;
     default:
   }
 

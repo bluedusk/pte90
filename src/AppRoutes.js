@@ -22,6 +22,8 @@ import ASQList from './components/testItem/asqList';
 import ItemDetail from './components/testItem/itemDetail';
 import ItemList from './components/testItem/itemList';
 import RepeatSentence from './components/testItem/rs';
+import ItemListContent from './components/testItem/itemListContent';
+import ReorderDetail from './components/testItem/reorder.js';
 import UserCenter from './components/me/userCenter';
 
 
@@ -58,7 +60,9 @@ class AppRoutes extends Component {
               <Scene key="asqList" component={ASQList} title="ASQList" />
               <Scene key="rs" component={RepeatSentence} title="RepeatSentence" />
               <Scene key="itemList" component={ItemList} title="ItemList" />
+              <Scene key="itemListContent" component={ItemListContent} title="ItemListContent" />
               <Scene key="itemDetail" component={ItemDetail} title="ItemDetail" />
+              <Scene key="reorder" component={ReorderDetail} title="ReorderDetail" />
               <Scene key="userCenter" component={UserCenter} title="Tab4" />
             </Scene>
           </RouterWithRedux>

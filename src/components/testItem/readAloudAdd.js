@@ -34,6 +34,9 @@ class ReadAloud extends React.Component {
 
   onSubmitHandler(){
     this.setState({process:1});
+    let test = {};
+    test.text = this.state.bodyText;
+    console.log(test);
   }
 
   render() {

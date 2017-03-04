@@ -125,19 +125,19 @@ class ItemsMain extends React.Component {
             </Right>
           </CardItem>
           <View style={this.state.toggle === 3 ? {} : {height: 0, opacity: 0}}>
-            <CardItem>
+            <CardItem button onPress={()=>{this.props.fetchItems('rsc')}}>
               <Text>Single Choice</Text>
               <Right>
                 <Icon name="arrow-forward" />
               </Right>
             </CardItem>
-            <CardItem>
+            <CardItem button onPress={()=>{this.props.fetchItems('rmc')}}>
               <Text>Multi Choice</Text>
               <Right>
                 <Icon name="arrow-forward" />
               </Right>
             </CardItem>
-            <CardItem>
+            <CardItem button onPress={()=>{this.props.fetchItems('reorder')}}>
               <Text>Reorder</Text>
               <Right>
                 <Icon name="arrow-forward" />

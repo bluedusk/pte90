@@ -19,7 +19,12 @@ class ItemList extends React.Component {
   }
 
   onItemPress(id){
-    Actions.itemDetail({id:id,header:'FIB'});
+    if (this.props.header == 'Reorder') {
+      Actions.reorder({id:id,header:this.props.header});
+    }
+    else{
+      Actions.itemDetail({id:id,header:this.props.header});
+    }
     // this.props.fetchCurrItem(id);
   }
 

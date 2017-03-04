@@ -8,11 +8,11 @@ import { PagerBtnSet } from '../common/pagerBtnSet';
 
 import styles from '../../styles/itemsMainStyle';
 
-const test = "#@Photo# taken on Feb 24, 2017 #@shows a# partly melted ice sculpture at the Ice and Snow World in Harbin, capital of Northeast China's Heilongjiang province, Feb 24, 2017. Ice sculptures began to melt as temperature rose recently. [Photo/Xinhua]";
+const test = "Photo taken on Feb 24, 2017 shows a# partly melted ice sculpture at the Ice and Snow World in Harbin,# capital of Northeast China's Heilongjiang province, Feb 24, 2017. Ice# sculptures began to melt as temperature rose recently. [Photo/Xinhua]";
 const test1 = "<Text style={{color:'red'}}>Photo</Text> <Text>taken on Feb 24, 2017 shows a partly melted ice sculpture at the Ice and Snow World in Harbin, capital of Northeast China's Heilongjiang province, Feb 24, 2017. Ice sculptures began to melt as temperature rose recently. [Photo/Xinhua]</Text>";
 const test2  = _.split(test, "#");
 
-class ItemDetail extends React.Component {
+class ReorderDetail extends React.Component {
 
   constructor(props){
     super(props);
@@ -34,16 +34,19 @@ class ItemDetail extends React.Component {
     const { array } = this.props.itemList;
     const item = array[this.state.itemIndex];
     const itemArray = _.split(item.itemText, "#");
-    const fibText = [];
+    // const itemArray = test2;
+    const reorderText = [];
     itemArray.forEach((item)=>{
-        if (item.indexOf("@")>=0) {
-          fibText.push(<Text style={{color:'red'}} key={_.uniqueId()}>{_.trim(item,"@")}</Text>);
-        }
-        else{
-          fibText.push(<Text key={_.uniqueId()}>{item}</Text>);
-        }
+        reorderText.push(
+          <CardItem content bordered key={_.uniqueId()}>
+            <Body>
+              <Text>
+                {item}
+              </Text>
+            </Body>
+          </CardItem>
+        );
       }
-
     );
 
     if(!this.state.itemIndex === -1){
@@ -60,15 +63,9 @@ class ItemDetail extends React.Component {
           <Right>
           </Right>
         </CardItem>
-        <CardItem content bordered>
-          <Body>
-            {/* <Text>{array[this.state.itemIndex].itemText}</Text> */}
-            <Text>
-              {/* <Text style={{color:'red'}}>{"Photo"}</Text><Text>{"taken on Feb 24, 2017 shows a partly melted ice sculpture at the Ice and Snow World in Harbin, capital of Northeast China's Heilongjiang province, Feb 24, 2017. Ice sculptures began to melt as temperature rose recently. [Photo/Xinhua]"}</Text> */}
-              {fibText}
-            </Text>
-          </Body>
-        </CardItem>
+
+        {reorderText}
+
         <CardItem style={{paddingVertical: 0}}>
           <Left>
             <Button transparent>
@@ -128,4 +125,4 @@ const mapStateToProps = (state) => {
   return { itemList : state.items };
 }
 
-export default connect(mapStateToProps)(ItemDetail);
+export default connect(mapStateToProps)(ReorderDetail);
