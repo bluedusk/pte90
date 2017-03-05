@@ -34,7 +34,7 @@ class PTEFooter extends Component {
       tab3: false,
       tab4: false,
     });
-    Actions['tab2']();
+    Actions['discover']();
   }
 
   toggleTab3() {
@@ -44,7 +44,7 @@ class PTEFooter extends Component {
       tab3: true,
       tab4: false,
     });
-    Actions['tab3']();
+    Actions['position']();
   }
 
   toggleTab4() {

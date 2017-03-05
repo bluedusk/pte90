@@ -37,7 +37,6 @@ class ItemsMain extends React.Component {
             <Body>
             </Body>
             <Right>
-              <Button transparent onPress={()=>{Actions['readAloudAdd']()}}><Text>Add</Text></Button>
             </Right>
         </Header>
       <Content padder>
@@ -99,13 +98,13 @@ class ItemsMain extends React.Component {
             </Right>
           </CardItem>
           <View style={this.state.toggle === 2 ? {} : {height: 0, opacity: 0}}>
-            <CardItem>
+            <CardItem button onPress={()=>{this.props.fetchItems('swt')}}>
               <Text>Summarize Written Text</Text>
               <Right>
                 <Icon name="arrow-forward" />
               </Right>
             </CardItem>
-            <CardItem>
+            <CardItem button onPress={()=>{this.props.fetchItems('essayList')}}>
               <Text>Essay</Text>
               <Right>
                 <Icon name="arrow-forward" />
@@ -164,6 +163,18 @@ class ItemsMain extends React.Component {
           </CardItem>
           <View style={this.state.toggle === 4 ? {} : {height: 0, opacity: 0}}>
             <CardItem>
+              <Text>Dictation</Text>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </CardItem>
+            <CardItem>
+              <Text>Summarize Spoken Text</Text>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </CardItem>
+            <CardItem>
               <Text>Single Choice</Text>
               <Right>
                 <Icon name="arrow-forward" />
@@ -182,19 +193,19 @@ class ItemsMain extends React.Component {
               </Right>
             </CardItem>
             <CardItem>
-              <Text>YouTube</Text>
+              <Text>Select Correct Summary</Text>
               <Right>
                 <Icon name="arrow-forward" />
               </Right>
             </CardItem>
             <CardItem>
-              <Text>YouTube</Text>
+              <Text>Fill in Blanks</Text>
               <Right>
                 <Icon name="arrow-forward" />
               </Right>
             </CardItem>
             <CardItem>
-              <Text>Dictation</Text>
+              <Text>Select Incorrect Words</Text>
               <Right>
                 <Icon name="arrow-forward" />
               </Right>

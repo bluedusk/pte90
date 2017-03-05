@@ -1,11 +1,11 @@
 import { Actions } from 'react-native-router-flux';
 import {
-  FETCH_ITEMS
+  FETCH_POSITIONS
 } from './types';
 
 
 
-export const fetchItems = (type) => {
+export const fetchPositions = (type) => {
 
   switch (type) {
     case 'ra':
@@ -50,11 +50,11 @@ export const fetchItems = (type) => {
       //   type: FETCH_ITEMS,
       //   payload: {},
       // });
-      const response = await fetch('http://rap.taobao.org/mockjsdata/14377/testItems');
+      const response = await fetch('http://rap.taobao.org/mockjsdata/14377/positions');
       const responseJson = await response.json()
       console.log(responseJson);
       dispatch({
-        type: FETCH_ITEMS,
+        type: FETCH_POSITIONS,
         payload: responseJson,
       });
 
@@ -62,16 +62,5 @@ export const fetchItems = (type) => {
       console.log(e);
 
     }
-    // dispatch({ type: LOGIN_USER });
-    //
-    // firebase.auth().signInWithEmailAndPassword(email, password)
-    //   .then(user => loginUserSuccess(dispatch, user))
-    //   .catch((error) => {
-    //     console.log(error);
-    //
-    //     firebase.auth().createUserWithEmailAndPassword(email, password)
-    //       .then(user => loginUserSuccess(dispatch, user))
-    //       .catch(() => loginUserFail(dispatch));
-    //   });
   };
 };

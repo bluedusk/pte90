@@ -30,7 +30,11 @@ class ItemListContent extends React.Component {
             <Body>
               <Text>{item.itemText}</Text>
               <Text>{someText.text}</Text>
-
+            </Body>
+          </CardItem>
+          <CardItem content bordered>
+            <Body>
+              <Text>{someText.text}</Text>
             </Body>
           </CardItem>
           <CardItem style={{paddingVertical: 0}}>
@@ -67,7 +71,7 @@ class ItemListContent extends React.Component {
               <Title>{this.props.header}</Title>
             </Body>
             <Right>
-              <Button transparent onPress={()=>{Actions['readAloudAdd']()}}><Text>Add</Text></Button>
+              <Button transparent onPress={()=>{Actions['newItem']()}}><Text>Add</Text></Button>
             </Right>
         </Header>
         <Content padder>

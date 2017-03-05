@@ -12,7 +12,7 @@ import Tab2 from './components/tab2';
 import Tab3 from './components/tab3';
 import Tab4 from './components/tab4';
 import ReadAloud from './components/testItem/readAloud';
-import ReadAloudAdd from './components/testItem/readAloudAdd';
+import NewItem from './components/testItem/newItem';
 import RetellLecture from './components/testItem/retellLecture';
 import DI from './components/testItem/di';
 import DIAlbum from './components/testItem/diAlbum';
@@ -23,8 +23,14 @@ import ItemDetail from './components/testItem/itemDetail';
 import ItemList from './components/testItem/itemList';
 import RepeatSentence from './components/testItem/rs';
 import ItemListContent from './components/testItem/itemListContent';
-import ReorderDetail from './components/testItem/reorder.js';
+import ReorderDetail from './components/testItem/reorder';
+import EssayList from './components/testItem/essayList';
+import EssaySamples from './components/testItem/essaySamples';
 import UserCenter from './components/me/userCenter';
+import Discover from './components/discover/discover';
+import Position from './components/position/position';
+import PositionTransfer from './components/position/positionTransfer';
+import PositionQuery from './components/position/positionQuery';
 
 
 // import ItemsMain from '.././js/components/Header/1';
@@ -51,7 +57,7 @@ class AppRoutes extends Component {
               <Scene key="tab3" component={Tab3} title="Tab3" />
               <Scene key="tab4" component={UserCenter} title="Tab4" />
               <Scene key="readAloud" component={ReadAloud} title="ReadAloud" />
-              <Scene key="readAloudAdd" component={ReadAloudAdd} title="ReadAloudAdd" />
+              <Scene key="newItem" component={NewItem} title="NewItem" />
               <Scene key="retellLecture" component={RetellLecture} title="RetellLecture" />
               <Scene key="rlDetail" component={RLDetail} title="RLDetail" />
               <Scene key="di" component={DI} title="DI" />
@@ -63,7 +69,13 @@ class AppRoutes extends Component {
               <Scene key="itemListContent" component={ItemListContent} title="ItemListContent" />
               <Scene key="itemDetail" component={ItemDetail} title="ItemDetail" />
               <Scene key="reorder" component={ReorderDetail} title="ReorderDetail" />
+              <Scene key="essayList" component={EssayList} title="essayList" />
+              <Scene key="essaySamples" component={EssaySamples} title="essaySamples" />
               <Scene key="userCenter" component={UserCenter} title="Tab4" />
+              <Scene key="discover" component={Discover} title="Discover" />
+              <Scene key="position" component={Position} title="Position" />
+              <Scene key="positionTransfer" component={PositionTransfer} title="PositionTransfer" />
+              <Scene key="positionQuery" component={PositionQuery} title="PositionQuery" />
             </Scene>
           </RouterWithRedux>
           <PTEFooter />

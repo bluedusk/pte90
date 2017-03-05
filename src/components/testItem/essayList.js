@@ -6,7 +6,7 @@ import { Actions } from 'react-native-router-flux';
 import styles from '../../styles/itemsMainStyle';
 
 
-class RepeatSentence extends React.Component {
+class EssayList extends React.Component {
 
   constructor(props){
     super(props);
@@ -26,7 +26,7 @@ class RepeatSentence extends React.Component {
         <Card style={styles.mb} key={item.itemId}>
           <CardItem content bordered>
             <Body>
-              <Text>{item.itemText}</Text>
+              <Text>{item.topic}</Text>
             </Body>
           </CardItem>
           <CardItem style={{paddingVertical: 0}}>
@@ -37,7 +37,9 @@ class RepeatSentence extends React.Component {
               </Button>
             </Left>
             <Right>
-
+              <Button transparent onPress={()=>{Actions['essaySamples']({id:item.itemId, samples:item.essaySample})}}>
+                <Text> 范文</Text>
+              </Button>
             </Right>
           </CardItem>
         </Card>
@@ -57,7 +59,7 @@ class RepeatSentence extends React.Component {
               </Button>
             </Left>
             <Body>
-              <Title>Repeat Sentence</Title>
+              <Title>Essay</Title>
             </Body>
             <Right>
               <Button transparent onPress={()=>{Actions['newItem']()}}><Text>Add</Text></Button>
@@ -78,4 +80,4 @@ const mapStateToProps = (state) => {
   return { itemList : state.items };
 }
 
-export default connect(mapStateToProps)(RepeatSentence);
+export default connect(mapStateToProps)(EssayList);

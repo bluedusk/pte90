@@ -1,15 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { View, Dimensions, TextInput } from 'react-native';
 import { Segment, Container, Header, Title, Spinner, Item, Label, Input, Form, Text, Button, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-
+import { newItem } from '../../actions/newItemAction';
 import styles from '../../styles/itemsMainStyle';
 
 const deviceWidth = Dimensions.get('window').width;
 
 // Entrance of Test Items, show menu
-class ReadAloud extends React.Component {
+class NewItem extends React.Component {
 
   constructor(props){
     super(props);
@@ -34,9 +35,11 @@ class ReadAloud extends React.Component {
 
   onSubmitHandler(){
     this.setState({process:1});
-    let test = {};
-    test.text = this.state.bodyText;
-    console.log(test);
+    let item = {};
+    item.text = this.state.bodyText;
+    item.type = this.props.itemType;
+    console.log(item);
+    this.props.newItem(item);
   }
 
   render() {
@@ -86,4 +89,8 @@ class ReadAloud extends React.Component {
 
 }
 
-export default connect()(ReadAloud);
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ newItem }, dispatch);
+}
+
+export default connect(null,mapDispatchToProps)(NewItem);

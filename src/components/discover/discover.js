@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { List, ListItem, Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
+import { Text } from 'react-native';
+import { Segment, List, ListItem, Header, Title, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { fetchCurrItem } from '../../actions/currItemAction'
 
@@ -9,7 +10,7 @@ import styles from '../../styles/styles';
 
 // const datas = ['Simon Mignolet', 'Nathaniel Clyne', 'Dejan Lovren', 'Mama Sakho', 'Alberto Moreno', 'Emre Can', 'Joe Allen', 'Phil Coutinho'];
 // Common component for item list [rl,swt,sst,fib]
-class ItemList extends React.Component {
+class Discover extends React.Component {
 
   constructor(props){
     super(props);
@@ -52,21 +53,35 @@ class ItemList extends React.Component {
     return (
       <Container>
         <Header>
-            <Left>
-              <Button transparent onPress={() => Actions.pop()}>
-                <Icon name="arrow-back" />
-              </Button>
-            </Left>
+          <Left>
+            <Title>PTE90</Title>
+          </Left>
             <Body>
-              <Title>{this.props.header}</Title>
             </Body>
             <Right>
-              {/* <Button transparent onPress={()=>{Actions['newItem']()}}><Icon name="search" /></Button> */}
               <Button transparent onPress={()=>{Actions['newItem']()}}><Text>Add</Text></Button>
             </Right>
         </Header>
         <Content padder>
-          { this.renderList() }
+          {/* { this.renderList() } */}
+          <Card style={styles.mb}>
+            <CardItem header bordered button onPress={()=>this.onToggle(1)}>
+              <Icon active name="paper" style={{ color: '#3B579D' }} />
+              <Text>机经</Text>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </CardItem>
+          </Card>
+          <Card style={styles.mb}>
+            <CardItem header bordered button onPress={()=>this.onToggle(1)}>
+              <Icon active name="navigate" style={{ color: 'red' }} />
+              <Text>经验</Text>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </CardItem>
+          </Card>
         </Content>
       </Container>
 
@@ -85,4 +100,4 @@ const mapStateToProps = (state) => {
   return { itemList : state.items };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemList);
+export default connect(mapStateToProps, mapDispatchToProps)(Discover);

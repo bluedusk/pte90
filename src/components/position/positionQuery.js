@@ -6,12 +6,11 @@ import { Actions } from 'react-native-router-flux';
 import styles from '../../styles/itemsMainStyle';
 
 
-class RepeatSentence extends React.Component {
+class PositionQuery extends React.Component {
 
   constructor(props){
     super(props);
     this.state = {
-      toggle:0
     }
   }
 
@@ -26,7 +25,12 @@ class RepeatSentence extends React.Component {
         <Card style={styles.mb} key={item.itemId}>
           <CardItem content bordered>
             <Body>
-              <Text>{item.itemText}</Text>
+              <Text>{item.type}</Text>
+            </Body>
+          </CardItem>
+          <CardItem content bordered>
+            <Body>
+              <Text>{item.text}</Text>
             </Body>
           </CardItem>
           <CardItem style={{paddingVertical: 0}}>
@@ -37,7 +41,10 @@ class RepeatSentence extends React.Component {
               </Button>
             </Left>
             <Right>
-
+              <Button transparent>
+                <Icon active name="thumbs-up" />
+                <Text> 讨论</Text>
+              </Button>
             </Right>
           </CardItem>
         </Card>
@@ -57,7 +64,7 @@ class RepeatSentence extends React.Component {
               </Button>
             </Left>
             <Body>
-              <Title>Repeat Sentence</Title>
+              <Title>Read Aloud</Title>
             </Body>
             <Right>
               <Button transparent onPress={()=>{Actions['newItem']()}}><Text>Add</Text></Button>
@@ -75,7 +82,7 @@ class RepeatSentence extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { itemList : state.items };
+  return { positions : state.positions };
 }
 
-export default connect(mapStateToProps)(RepeatSentence);
+export default connect(mapStateToProps)(PositionQuery);

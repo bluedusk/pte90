@@ -6,30 +6,57 @@ import { Actions } from 'react-native-router-flux';
 import styles from '../../styles/itemsMainStyle';
 
 
-class RepeatSentence extends React.Component {
+class PositionTransfer extends React.Component {
 
   constructor(props){
     super(props);
     this.state = {
-      toggle:0
     }
   }
 
   renderList(){
     //console.log(this.props);
-    const { array } = this.props.itemList;
+    const { array } = this.props.positions;
     if(!array || array.length == 0){
       return <Text>loading...</Text>
     }
     let res = array.map(item =>{
+      let type = '';
+      let shadowStyle = {};
+      switch (item.type) {
+        case 1:
+          type = '转';
+          shadowStyle = {shadowColor:'orange'};
+          break;
+        case 2:
+          type = '换'
+          shadowStyle = {shadowColor:'green'};
+          break;
+        case 3:
+          type = '求'
+          shadowStyle = {shadowColor:'blue'};
+          break;
+        default:
+
+      }
       return(
-        <Card style={styles.mb} key={item.itemId}>
+        <Card style={styles.mb} key={item.itemId} style={shadowStyle}>
+
           <CardItem content bordered>
             <Body>
-              <Text>{item.itemText}</Text>
+              <Text>{item.text}</Text>
             </Body>
           </CardItem>
-          <CardItem style={{paddingVertical: 0}}>
+          <CardItem>
+            {/* <Left>
+            </Left> */}
+            <Body>
+            </Body>
+            <Right>
+              <Text style={{fontSize:10,color:'grey'}}>{type} - 1天前</Text>
+            </Right>
+          </CardItem>
+          {/* <CardItem style={{paddingVertical: 0}}>
             <Left>
               <Button transparent>
                 <Icon active name="thumbs-up" />
@@ -37,9 +64,12 @@ class RepeatSentence extends React.Component {
               </Button>
             </Left>
             <Right>
-
+              <Button transparent>
+                <Icon active name="thumbs-up" />
+                <Text> 讨论</Text>
+              </Button>
             </Right>
-          </CardItem>
+          </CardItem> */}
         </Card>
       );
     });
@@ -57,7 +87,7 @@ class RepeatSentence extends React.Component {
               </Button>
             </Left>
             <Body>
-              <Title>Repeat Sentence</Title>
+              <Title>考位转让</Title>
             </Body>
             <Right>
               <Button transparent onPress={()=>{Actions['newItem']()}}><Text>Add</Text></Button>
@@ -75,7 +105,7 @@ class RepeatSentence extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { itemList : state.items };
+  return { positions : state.positions };
 }
 
-export default connect(mapStateToProps)(RepeatSentence);
+export default connect(mapStateToProps)(PositionTransfer);

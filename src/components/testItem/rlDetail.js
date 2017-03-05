@@ -79,7 +79,7 @@ class RLDetail extends React.Component {
               <Title>Retell Lecture</Title>
             </Body>
             <Right>
-              <Button transparent onPress={()=>{Actions['readAloudAdd']()}}><Text>Add</Text></Button>
+              <Button transparent onPress={()=>{Actions['newItem']()}}><Text>Add</Text></Button>
             </Right>
         </Header>
         <Content padder>

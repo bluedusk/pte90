@@ -61,46 +61,72 @@ class UserCenter extends Component {
           <Separator bordered noTopBorder />
           <ListItem icon>
             <Left>
+              <Button style={{ backgroundColor: '#5855D6' }}>
+                <Icon active name="moon" />
+              </Button>
+            </Left>
+            <Body>
+              <Text>我的积分</Text>
+            </Body>
+            <Right>
+              <Text>500</Text>
+            </Right>
+          </ListItem>
+          <ListItem icon button onPress={()=>{}}>
+            <Left>
+              <Button style={{ backgroundColor: '#5855D6' }}>
+                <Icon active name="moon" />
+              </Button>
+            </Left>
+            <Body>
+              <Text>积分规则</Text>
+            </Body>
+            <Right>
+              {(Platform.OS === 'ios') && <Icon active name="arrow-forward" />}
+            </Right>
+          </ListItem>
+          <ListItem icon button onPress={()=>{}}>
+            <Left>
+              <Button style={{ backgroundColor: '#5855D6' }}>
+                <Icon active name="moon" />
+              </Button>
+            </Left>
+            <Body>
+              <Text>我的机经</Text>
+            </Body>
+            <Right>
+              {(Platform.OS === 'ios') && <Icon active name="arrow-forward" />}
+            </Right>
+          </ListItem>
+          <ListItem icon button onPress={()=>{}}>
+            <Left>
+              <Button style={{ backgroundColor: '#5855D6' }}>
+                <Icon active name="moon" />
+              </Button>
+            </Left>
+            <Body>
+              <Text>我的考位</Text>
+            </Body>
+            <Right>
+              {(Platform.OS === 'ios') && <Icon active name="arrow-forward" />}
+            </Right>
+          </ListItem>
+          <ListItem icon>
+            <Left>
               <Button style={{ backgroundColor: '#FF9501' }}>
                 <Icon active name="plane" />
               </Button>
             </Left>
             <Body>
-              <Text>Airplane Mode</Text>
+              <Text>离线模式</Text>
             </Body>
             <Right>
               <Switch value={false} onTintColor="#50B948" />
             </Right>
           </ListItem>
-          <ListItem icon>
-            <Left>
-              <Button style={{ backgroundColor: '#007AFF' }}>
-                <Icon active name="wifi" />
-              </Button>
-            </Left>
-            <Body>
-              <Text>Wi-Fi</Text>
-            </Body>
-            <Right>
-              <Text>GeekyAnts</Text>
-              {(Platform.OS === 'ios') && <Icon active name="arrow-forward" />}
-            </Right>
-          </ListItem>
-          <ListItem icon>
-            <Left>
-              <Button style={{ backgroundColor: '#007AFF' }}>
-                <Icon active name="bluetooth" />
-              </Button>
-            </Left>
-            <Body>
-              <Text>Bluetooth</Text>
-            </Body>
-            <Right>
-              <Text>On</Text>
-              {(Platform.OS === 'ios') && <Icon active name="arrow-forward" />}
-            </Right>
-          </ListItem>
-          <ListItem icon>
+
+
+          <ListItem icon last>
             <Left>
               <Button style={{ backgroundColor: '#4CDA64' }}>
                 <Icon active name="phone-portrait" />
@@ -113,20 +139,7 @@ class UserCenter extends Component {
               <Radio selected />
             </Right>
           </ListItem>
-          <ListItem icon last>
-            <Left>
-              <Button style={{ backgroundColor: '#4CDA64' }}>
-                <Icon active name="link" />
-              </Button>
-            </Left>
-            <Body>
-              <Text>Personal Hotspot</Text>
-            </Body>
-            <Right>
-              <Text>Off</Text>
-              {(Platform.OS === 'ios') && <Icon active name="arrow-forward" />}
-            </Right>
-          </ListItem>
+        
 
           <Separator bordered />
 
