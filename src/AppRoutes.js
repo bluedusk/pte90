@@ -31,6 +31,7 @@ import Discover from './components/discover/discover';
 import Position from './components/position/position';
 import PositionTransfer from './components/position/positionTransfer';
 import PositionQuery from './components/position/positionQuery';
+import PositionNew from './components/position/positionNew';
 
 
 // import ItemsMain from '.././js/components/Header/1';
@@ -76,6 +77,7 @@ class AppRoutes extends Component {
               <Scene key="position" component={Position} title="Position" />
               <Scene key="positionTransfer" component={PositionTransfer} title="PositionTransfer" />
               <Scene key="positionQuery" component={PositionQuery} title="PositionQuery" />
+              <Scene key="positionNew" component={PositionNew} title="PositionNew" />
             </Scene>
           </RouterWithRedux>
           <PTEFooter />
