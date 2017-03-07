@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Text } from 'react-native';
 import { Segment, List, ListItem, Header, Title, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-import { fetchCurrItem } from '../../actions/currItemAction'
+import { fetchExps } from '../../actions/expAction'
 
 import styles from '../../styles/styles';
 
@@ -19,34 +19,14 @@ class Discover extends React.Component {
     }
   }
 
-  onItemPress(id){
-    if (this.props.header == 'Reorder') {
-      Actions.reorder({id:id,header:this.props.header});
+  onBtnPress(id){
+    if (id==1) {
+      Actions.expList({header:"经验分享"});
     }
     else{
-      Actions.itemDetail({id:id,header:this.props.header});
+      Actions.itemShare({header:"机经分享"});
     }
     // this.props.fetchCurrItem(id);
-  }
-
-  renderList(){
-    const { array } = this.props.itemList;
-    if(!array || array.length == 0 ){
-      return <Text>loading...</Text>
-    }
-    return (
-      <List
-        dataArray={array} renderRow={data =>
-          <ListItem button onPress={()=>this.onItemPress(data.itemId)}>
-            <Text>{data.topic}</Text>
-            <Right>
-              <Icon name="arrow-forward" />
-            </Right>
-          </ListItem>
-        }
-      />
-    );
-    //console.log(res);
   }
 
   render() {
@@ -56,11 +36,10 @@ class Discover extends React.Component {
           <Left>
             <Title>PTE90</Title>
           </Left>
-            <Body>
-            </Body>
-            <Right>
-              <Button transparent onPress={()=>{Actions['newItem']()}}><Text>Add</Text></Button>
-            </Right>
+          <Body>
+          </Body>
+          <Right>
+          </Right>
         </Header>
         <Content padder>
           {/* { this.renderList() } */}
@@ -74,7 +53,7 @@ class Discover extends React.Component {
             </CardItem>
           </Card>
           <Card style={styles.mb}>
-            <CardItem header bordered button onPress={()=>this.onToggle(1)}>
+            <CardItem header bordered button onPress={()=>this.onBtnPress(1)}>
               <Icon active name="navigate" style={{ color: 'red' }} />
               <Text>经验</Text>
               <Right>
@@ -84,20 +63,17 @@ class Discover extends React.Component {
           </Card>
         </Content>
       </Container>
-
-
     );
   }
-
 }
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
-    fetchCurrItem:fetchCurrItem
+    fetchExps:fetchExps
   }, dispatch);
 }
 const mapStateToProps = (state) => {
-  return { itemList : state.items };
+  return { expList : state.exps };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Discover);
