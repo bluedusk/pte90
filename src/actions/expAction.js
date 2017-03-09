@@ -1,8 +1,9 @@
 import { Actions } from 'react-native-router-flux';
 import {
+  EXP_NEW,
   FETCH_EXPS
 } from './types';
-
+import { EXPERIENCES_URL } from './config';
 
 
 export const fetchExps = (type) => {
@@ -13,11 +14,11 @@ export const fetchExps = (type) => {
       //   type: FETCH_ITEMS,
       //   payload: {},
       // });
-      const response = await fetch('http://rap.taobao.org/mockjsdata/14377/positions');
+      const response = await fetch(EXPERIENCES_URL);
       const responseJson = await response.json()
       console.log(responseJson);
       dispatch({
-        type: FETCH_POSITIONS,
+        type: FETCH_EXPS,
         payload: responseJson,
       });
 
@@ -36,11 +37,11 @@ export const expNew = () => {
       //   type: FETCH_ITEMS,
       //   payload: {},
       // });
-      const response = await fetch('http://rap.taobao.org/mockjsdata/14377/experiences');
+      const response = await fetch(EXPERIENCES_URL);
       const responseJson = await response.json()
       console.log(responseJson);
       dispatch({
-        type: FETCH_POSITIONS,
+        type: EXP_NEW,
         payload: responseJson,
       });
 

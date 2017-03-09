@@ -15,19 +15,19 @@ class ExpList extends React.Component {
     }
   }
 
-  onItemPress(id){
-    Actions.expDetail({id:id,header:this.props.header,content:""});
+  onItemPress(item){
+    Actions.expDetail({exp:item});
   }
 
   renderList(){
-    const { array } = this.props.itemList;
+    const { array } = this.props.expList;
     if(!array || array.length == 0 ){
       return <Text>loading...</Text>
     }
     return (
       <List
         dataArray={array} renderRow={data =>
-          <ListItem button onPress={()=>this.onItemPress(data.id)}>
+          <ListItem button onPress={()=>this.onItemPress(data)}>
             <Text>{data.title}</Text>
             <Right>
               <Icon name="arrow-forward" />
@@ -53,7 +53,7 @@ class ExpList extends React.Component {
             </Body>
             <Right>
               {/* <Button transparent onPress={()=>{Actions['newItem']()}}><Icon name="search" /></Button> */}
-              <Button transparent onPress={()=>{Actions['newExp']()}}><Text>Add</Text></Button>
+              <Button transparent onPress={()=>{Actions['expNew']()}}><Text>Add</Text></Button>
             </Right>
         </Header>
         <Content padder>

@@ -1,10 +1,13 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Platform } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { Platform, Text } from 'react-native';
 import { actions } from 'react-native-navigation-redux-helpers';
-import { Container, Header, Title, Content, Button, Icon, ListItem, Text, Badge, Left, Right, Body, Switch, Radio, Picker, Separator } from 'native-base';
+import { Container, Header, Title, Content, Button, Icon, ListItem, Badge, Left, Right, Body, Switch, Radio, Picker, Separator } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import { fetchUser } from '../../actions/userAction';
+import { fetchPositions } from '../../actions/positionAction';
 
 import styles from '../../styles/styles';
 
@@ -16,12 +19,7 @@ const {
 
 class UserCenter extends Component {
 
-  static propTypes = {
-    popRoute: React.PropTypes.func,
-    navigation: React.PropTypes.shape({
-      key: React.PropTypes.string,
-    }),
-  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -32,6 +30,12 @@ class UserCenter extends Component {
       },
     };
   }
+
+  componentWillMount(){
+  // query user info
+    this.props.fetchUser();
+  }
+
   onValueChange(value: string) {
     this.setState({
       selected1: value,
@@ -40,6 +44,16 @@ class UserCenter extends Component {
 
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
+  }
+
+  onItemPress(type){
+    switch (type) {
+      case 'position':
+        Actions.positionTransfer();
+        this.props.fetchPositions('userid');
+        break;
+      default:
+    }
   }
 
   render() {
@@ -69,7 +83,7 @@ class UserCenter extends Component {
               <Text>我的积分</Text>
             </Body>
             <Right>
-              <Text>500</Text>
+              <Text>{this.props.user.info.points}</Text>
             </Right>
           </ListItem>
           <ListItem icon button onPress={()=>{}}>
@@ -98,7 +112,7 @@ class UserCenter extends Component {
               {(Platform.OS === 'ios') && <Icon active name="arrow-forward" />}
             </Right>
           </ListItem>
-          <ListItem icon button onPress={()=>{}}>
+          <ListItem icon button onPress={this.onItemPress.bind(this,'position')}>
             <Left>
               <Button style={{ backgroundColor: '#5855D6' }}>
                 <Icon active name="moon" />
@@ -139,7 +153,7 @@ class UserCenter extends Component {
               <Radio selected />
             </Right>
           </ListItem>
-        
+
 
           <Separator bordered />
 
@@ -238,15 +252,12 @@ class UserCenter extends Component {
   }
 }
 
-function bindAction(dispatch) {
-  return {
-    popRoute: key => dispatch(popRoute(key)),
-  };
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ fetchUser, fetchPositions }, dispatch);
 }
 
-// const mapStateToProps = state => ({
-//   navigation: state.cardNavigation,
-//   themeState: state.drawer.themeState,
-// });
+const mapStateToProps = state => ({
+  user: state.user
+});
 
-export default connect()(UserCenter);
+export default connect(mapStateToProps, mapDispatchToProps)(UserCenter);

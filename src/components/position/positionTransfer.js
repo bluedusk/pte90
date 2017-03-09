@@ -41,15 +41,17 @@ class PositionTransfer extends React.Component {
       }
       return(
         <Card style={styles.mb} key={item.itemId} style={shadowStyle}>
-
           <CardItem content bordered>
             <Body>
               <Text>{item.text}</Text>
             </Body>
           </CardItem>
-          <CardItem>
-            {/* <Left>
-            </Left> */}
+          <CardItem style={{paddingVertical: 0, marginVertical:0}}>
+            <Left>
+              <Button transparent onPress={this.onDelete.bind(this,item.itemId)}>
+                <Text>删除</Text>
+              </Button>
+            </Left>
             <Body>
             </Body>
             <Right>

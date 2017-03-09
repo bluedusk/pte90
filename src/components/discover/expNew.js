@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { View, Dimensions, TextInput } from 'react-native';
 import { Picker, Segment, Container, Header, Title, Spinner, Item, Label, Input, Form, Text, Button, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-import { positionNew } from '../../actions/positionAction';
+import { expNew } from '../../actions/positionAction';
 import styles from '../../styles/itemsMainStyle';
 
 const deviceWidth = Dimensions.get('window').width;
@@ -76,7 +76,7 @@ class ExpNew extends React.Component {
               </Button>
             </Left>
             <Body>
-              <Title>考位交换</Title>
+              <Title>经验分享</Title>
             </Body>
             <Right>
               {this.rightBtn()}

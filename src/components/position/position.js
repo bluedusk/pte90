@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Text } from 'react-native';
+import { Text, Linking } from 'react-native';
 import { Segment, List, ListItem, Header, Title, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { fetchPositions } from '../../actions/positionAction'
@@ -49,7 +49,7 @@ class Position extends React.Component {
         <Content padder>
           {/* { this.renderList() } */}
           <Card style={styles.mb}>
-            <CardItem header bordered button onPress={()=> {Actions['positionQuery']()}}>
+            <CardItem header bordered button onPress={() => Linking.openURL("http://pearsonvue.com/Dispatcher?application=SeatSearch&action=actStartApp&v=W2L&clientCode=PEARSONLANGUAGE")}>
               <Icon active name="paper" style={{ color: '#3B579D' }} />
               <Text>考位查询</Text>
               <Right>

@@ -22,6 +22,7 @@ class Discover extends React.Component {
   onBtnPress(id){
     if (id==1) {
       Actions.expList({header:"经验分享"});
+      this.props.fetchExps();
     }
     else{
       Actions.itemShare({header:"机经分享"});

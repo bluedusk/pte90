@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import { Linking } from 'react-native';
 
 import styles from '../../styles/itemsMainStyle';
 
@@ -71,7 +72,16 @@ class PositionQuery extends React.Component {
             </Right>
         </Header>
         <Content padder>
-          { this.renderList() }
+          {/* { this.renderList() } */}
+          <Card>
+            <CardItem>
+              
+            </CardItem>
+          </Card>
+
+          <Button onPress={() => Linking.openURL("http://pearsonvue.com/Dispatcher?v=W2L&application=RegSched&HasXSes=Y&wscid=515133627&layer=SelTestCenterPage&action=doneTestCenterAction&bfp=top.SeatSearchPageFrame.RegSchedPageFrame&embedClientID=445&bfpapp=top.SeatSearchPageFrame&embed=continue&wsid=1489059885744")}>
+          <Text>查询</Text>
+        </Button>
         </Content>
       </Container>
 
