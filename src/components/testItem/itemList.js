@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { List, ListItem, Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { fetchCurrItem } from '../../actions/currItemAction'
-
+import { iMap } from '../../config/config';
 import styles from '../../styles/styles';
 
 // const datas = ['Simon Mignolet', 'Nathaniel Clyne', 'Dejan Lovren', 'Mama Sakho', 'Alberto Moreno', 'Emre Can', 'Joe Allen', 'Phil Coutinho'];
@@ -17,7 +17,7 @@ class ItemList extends React.Component {
       selectedItemId:''
     }
   }
-
+  // click on an item, go to itemDetail
   onItemPress(id){
     if (this.props.header == 'Reorder') {
       Actions.reorder({id:id,header:this.props.header});

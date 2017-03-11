@@ -1,14 +1,18 @@
 import {
-  FETCH_ITEMS,
-  FETCH_ITEM
+  FETCH_USERITEMS
 } from '../actions/types';
 
-const INITIAL_STATE = {};
+const INITIAL_STATE = {
+  type: '',
+  array: [],
+  error: '',
+  loading: false
+};
 
 export default (state = INITIAL_STATE, action) => {
   // console.log(action.payload);
   switch (action.type) {
-    case FETCH_ITEMS:
+    case FETCH_USERITEMS:
       return { ...state, array: action.payload.resBody };
     // case EMAIL_CHANGED:
     //   return { ...state, email: action.payload };

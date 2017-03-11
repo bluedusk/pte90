@@ -36,8 +36,8 @@ class NewItem extends React.Component {
   onSubmitHandler(){
     this.setState({process:1});
     let item = {};
-    item.text = this.state.bodyText;
-    item.type = this.props.itemType;
+    item.itemText = this.state.bodyText;
+    item.itemType = this.props.itemType;
     console.log(item);
     this.props.newItem(item);
   }
@@ -52,7 +52,7 @@ class NewItem extends React.Component {
               </Button>
             </Left>
             <Body>
-              <Title>Read Aloud</Title>
+              <Title>{this.props.header}</Title>
             </Body>
             <Right>
               {this.rightBtn()}

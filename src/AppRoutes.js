@@ -35,6 +35,7 @@ import PositionNew from './components/position/positionNew';
 import ExpList from './components/discover/experience';
 import ExpDetail from './components/discover/expDetail';
 import ExpNew from './components/discover/expNew';
+import UserItems from './components/testItem/userItems';
 
 
 // import ItemsMain from '.././js/components/Header/1';
@@ -84,6 +85,7 @@ class AppRoutes extends Component {
               <Scene key="expList" component={ExpList} title="ExpList" />
               <Scene key="expDetail" component={ExpDetail} title="ExpDetail" />
               <Scene key="expNew" component={ExpNew} title="ExpNew" />
+              <Scene key="userItems" component={UserItems} title="UserItems" />
             </Scene>
           </RouterWithRedux>
           <PTEFooter />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Dimensions, TextInput } from 'react-native';
+import { View, Dimensions, TextInput, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { Picker, Segment, Container, Header, Title, Spinner, Item, Label, Input, Form, Text, Button, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { expNew } from '../../actions/positionAction';
@@ -15,6 +15,7 @@ class ExpNew extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      KeyboardShown:false,
       bodyText: '',
       request: {},
       transferType: 0,
@@ -41,6 +42,14 @@ class ExpNew extends React.Component {
     item.type = this.props.transferType;
     console.log(item);
     this.props.positionNew(item);
+  }
+
+  onFocus(){
+    console.log('on focus');
+    this.setState({KeyboardShown:!this.state.KeyboardShown});
+    if (!this.state.KeyboardShown) {
+      Keyboard.dismiss();
+    }
   }
 
   onPressButton (id) {
@@ -83,14 +92,15 @@ class ExpNew extends React.Component {
             </Right>
         </Header>
 
-        <Content padder>
+        <Content padder >
         <Card>
           <Form>
             <Item regular>
-              <Input style={{height:300, backgroundColor:'white'}}
+
+              <Input style={{height:150, backgroundColor:'white', fontSize:10}}
                   multiline={true}
-                  numberOfLines={40}
-                  placeholder=''
+                  //numberOfLines={20}
+                  placeholder='请选择分享类型；下拉隐藏键盘'
                   onChangeText={(bodyText) => this.setState({bodyText})}
                 />
             </Item>
@@ -100,10 +110,11 @@ class ExpNew extends React.Component {
             <Button first active={this.state.btnStatus[0]} onPress={this.onPressButton.bind(this,0)}><Text>考试回忆</Text></Button>
             <Button active={this.state.btnStatus[1]} onPress={this.onPressButton.bind(this,1)}><Text>经验分享</Text></Button>
         </Segment>
-          <Text numberOfLines={40}>
+          {/* <Text numberOfLines={40}>
             {this.state.bodyText}
-          </Text>
+          </Text> */}
         </Content>
+
       </Container>
     );
   }

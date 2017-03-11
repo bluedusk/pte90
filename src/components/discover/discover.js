@@ -4,7 +4,8 @@ import { bindActionCreators } from 'redux';
 import { Text } from 'react-native';
 import { Segment, List, ListItem, Header, Title, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-import { fetchExps } from '../../actions/expAction'
+import { fetchExps } from '../../actions/expAction';
+import { fetchUserItems } from '../../actions/itemsAction';
 
 import styles from '../../styles/styles';
 
@@ -25,7 +26,8 @@ class Discover extends React.Component {
       this.props.fetchExps();
     }
     else{
-      Actions.itemShare({header:"机经分享"});
+      Actions.userItems({header:"机经分享"});
+      this.props.fetchUserItems('user');
     }
     // this.props.fetchCurrItem(id);
   }
@@ -45,7 +47,7 @@ class Discover extends React.Component {
         <Content padder>
           {/* { this.renderList() } */}
           <Card style={styles.mb}>
-            <CardItem header bordered button onPress={()=>this.onToggle(1)}>
+            <CardItem header bordered button onPress={()=>this.onBtnPress(0)}>
               <Icon active name="paper" style={{ color: '#3B579D' }} />
               <Text>机经</Text>
               <Right>
@@ -70,7 +72,8 @@ class Discover extends React.Component {
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
-    fetchExps:fetchExps
+    fetchExps:fetchExps,
+    fetchUserItems:fetchUserItems
   }, dispatch);
 }
 const mapStateToProps = (state) => {

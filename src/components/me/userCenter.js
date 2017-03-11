@@ -140,7 +140,7 @@ class UserCenter extends Component {
           </ListItem>
 
 
-          <ListItem icon last>
+          {/* <ListItem icon last>
             <Left>
               <Button style={{ backgroundColor: '#4CDA64' }}>
                 <Icon active name="phone-portrait" />
@@ -244,7 +244,7 @@ class UserCenter extends Component {
             <Right>
               {(Platform.OS === 'ios') && <Icon active name="arrow-forward" />}
             </Right>
-          </ListItem>
+          </ListItem> */}
 
         </Content>
       </Container>

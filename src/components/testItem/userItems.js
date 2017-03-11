@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { AlertIOS } from 'react-native';
 import { Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-
+import { iMap } from '../../config/config';
 import styles from '../../styles/itemsMainStyle';
 
-// Common component for item list [ra,choice,wfd]
-class ItemListContent extends React.Component {
+class UserItems extends React.Component {
 
   constructor(props){
     super(props);
@@ -15,26 +15,37 @@ class ItemListContent extends React.Component {
     }
   }
 
+  onDeleteItem(id){
+    console.log(id);
+    AlertIOS.alert(
+     'Update available',
+     'Keep your app up to date to enjoy the latest features',
+     [
+       {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+       {text: 'Delete', onPress: () => console.log('Install Pressed')},
+     ],
+    );
+    // this.props.delItem(id);
+  }
+
   renderList(){
     //console.log(this.props);
-    var someText = {text:"Hi~   \n\\n  this is a test message."};
     const { array } = this.props.itemList;
     if(!array || array.length == 0){
       return <Text>loading...</Text>
     }
-    console.log(array);
     let res = array.map(item =>{
       return(
         <Card style={styles.mb} key={item.itemId}>
           <CardItem content bordered>
             <Body>
-              <Text>{item.itemText}</Text>
-              <Text>{someText.text}</Text>
+              <Text>{iMap[item.itemType].long}</Text>
+              <Text style={{color:'pink',fontSize:10}}>by {item.contributor}, 1天前</Text>
             </Body>
           </CardItem>
           <CardItem content bordered>
             <Body>
-              <Text>{someText.text}</Text>
+              <Text>{item.itemText}</Text>
             </Body>
           </CardItem>
           <CardItem style={{paddingVertical: 0}}>
@@ -44,9 +55,18 @@ class ItemListContent extends React.Component {
                 <Text>  {item.tested} 考过</Text>
               </Button>
             </Left>
+            <Body style={{alignItems:'center',justifyContent:'center'}}>
+              <Button transparent
+                style={{alignItems:'center',justifyContent:'center'}}
+                onPress={this.onDeleteItem.bind(this,item.itemId)}
+                >
+                {/* <Icon active name="thumbs-up" /> */}
+                <Text>删除</Text>
+              </Button>
+            </Body>
             <Right>
               <Button transparent>
-                <Icon active name="thumbs-up" />
+                {/* <Icon active name="thumbs-up" /> */}
                 <Text> 讨论</Text>
               </Button>
             </Right>
@@ -71,22 +91,19 @@ class ItemListContent extends React.Component {
               <Title>{this.props.header}</Title>
             </Body>
             <Right>
-              <Button transparent onPress={()=>{Actions['newItem']({type:'ra'})}}><Text>Add</Text></Button>
+              {/* <Button transparent onPress={()=>{Actions['newItem']({itemType:'ra'})}}><Text>Add</Text></Button> */}
             </Right>
         </Header>
         <Content padder>
           { this.renderList() }
         </Content>
       </Container>
-
-
     );
   }
-
 }
 
 const mapStateToProps = (state) => {
-  return { itemList : state.items };
+  return { itemList : state.userItems };
 }
 
-export default connect(mapStateToProps)(ItemListContent);
+export default connect(mapStateToProps)(UserItems);

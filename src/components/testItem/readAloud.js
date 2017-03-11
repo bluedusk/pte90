@@ -60,10 +60,10 @@ class ReadAloud extends React.Component {
               </Button>
             </Left>
             <Body>
-              <Title>Read Aloud</Title>
+              <Title>{this.props.header}</Title>
             </Body>
             <Right>
-              <Button transparent onPress={()=>{Actions['newItem']()}}><Text>Add</Text></Button>
+              <Button transparent onPress={()=>{Actions['newItem']({itemType:'ra'})}}><Text>Add</Text></Button>
             </Right>
         </Header>
         <Content padder>
