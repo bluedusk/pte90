@@ -16,14 +16,14 @@ export const fetchExps = (type) => {
       // });
       const response = await fetch(EXPERIENCES_URL);
       const responseJson = await response.json()
-      console.log(responseJson);
+      //console.log(responseJson);
       dispatch({
         type: FETCH_EXPS,
         payload: responseJson,
       });
 
     } catch (e) {
-      console.log(e);
+      //console.log(e);
 
     }
   };
@@ -39,14 +39,14 @@ export const expNew = () => {
       // });
       const response = await fetch(EXPERIENCES_URL);
       const responseJson = await response.json()
-      console.log(responseJson);
+      //console.log(responseJson);
       dispatch({
         type: EXP_NEW,
         payload: responseJson,
       });
 
     } catch (e) {
-      console.log(e);
+      //console.log(e);
     }
   };
 };

@@ -6,11 +6,11 @@ import {
 
 
 export const fetchCurrItem = (id) => {
-  console.log(id);
+  //console.log(id);
 
 
   // get state in action
-  console.log(this.getState());
+  //console.log(this.getState());
 
   return {
     type: FETCH_ITEM,

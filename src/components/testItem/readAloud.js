@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import { fetchItems } from '../../actions/itemsAction';
+import { bindActionCreators } from 'redux';
+import { InteractionManager } from 'react-native';
 
 import styles from '../../styles/itemsMainStyle';
 
@@ -15,10 +18,21 @@ class ReadAloud extends React.Component {
     }
   }
 
+  componentDidMount(){
+    // requestAnimationFrame(()=>this.props.fetchItems('ra'),1000) ;
+    // setTimeout(()=>this.props.fetchItems('ra'),500);
+    InteractionManager.runAfterInteractions(() => {
+     // ...long-running synchronous task...
+     this.props.fetchItems('ra');
+    });
+
+  }
+
   renderList(){
     //console.log(this.props);
     const { array } = this.props.itemList;
-    if(!array || array.length == 0){
+    console.log(this.props.itemList);
+    if(this.props.itemList.loading && array.length == 0){
       return <Text>loading...</Text>
     }
     let res = array.map(item =>{
@@ -77,8 +91,14 @@ class ReadAloud extends React.Component {
 
 }
 
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({
+    fetchItems:fetchItems
+  }, dispatch);
+}
+
 const mapStateToProps = (state) => {
   return { itemList : state.items };
 }
 
-export default connect(mapStateToProps)(ReadAloud);
+export default connect(mapStateToProps,mapDispatchToProps)(ReadAloud);

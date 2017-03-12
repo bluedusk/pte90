@@ -8,8 +8,8 @@ const INITIAL_STATE = {};
 export default (state = INITIAL_STATE, action) => {
   // console.log(action.payload);
   switch (action.type) {
-    case FETCH_ITEMS:
-      return { ...state, array: action.payload.resBody };
+    // case FETCH_ITEMS:
+    //   return { ...state, array: action.payload.resBody };
     // case EMAIL_CHANGED:
     //   return { ...state, email: action.payload };
     // case PASSWORD_CHANGED:

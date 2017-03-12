@@ -19,8 +19,8 @@ class RLDetail extends React.Component {
   }
 
   componentWillMount(){
-    console.log(this.props.id);
-    console.log(this.props.itemList.array.length);
+    //console.log(this.props.id);
+    //console.log(this.props.itemList.array.length);
     const { array } = this.props.itemList;
     const index = _.findIndex(array, (o) => o.itemId == this.props.id )
     this.setState({itemIndex:index, arrayLength:array.length});

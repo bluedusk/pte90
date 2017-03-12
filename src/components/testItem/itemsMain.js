@@ -6,7 +6,7 @@ import { Header, Container, Content, Card, CardItem, Icon, Left, Title, Body, Bu
 import { Actions } from 'react-native-router-flux';
 import { fetchItems } from '../../actions/itemsAction';
 
-import styles from '../../styles/itemsMainStyle';
+// import styles from '../../styles/itemsMainStyle';
 
 // Entrance of Test Items, show menu
 class ItemsMain extends React.Component {
@@ -27,6 +27,163 @@ class ItemsMain extends React.Component {
     this.setState({toggle:index})
   }
 
+  renderSpeaking(){
+    if(this.state.toggle === 1){
+      return (
+        <View>
+        <CardItem button onPress={()=> {Actions['readAloud']({itemType:"ra",header:'Read Aloud'})}}>
+        {/* <CardItem button onPress={()=>{this.props.fetchItems('ra')}}> */}
+          <Text>Read Aloud</Text>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
+        </CardItem>
+        <CardItem button onPress={()=>{this.props.fetchItems('rl')}}>
+          <Text>Retell Lecture</Text>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
+        </CardItem>
+        <CardItem button onPress={()=>{this.props.fetchItems('di')}}>
+          <Text>Describe Image</Text>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
+        </CardItem>
+        <CardItem button onPress={()=>{this.props.fetchItems('rs')}}>
+          <Text>Repeat Sentence</Text>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
+        </CardItem>
+        <CardItem button onPress={()=>{this.props.fetchItems('asq')}}>
+          <Text>Answer Short Question</Text>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
+        </CardItem>
+      </View>
+    );
+    }
+    else{
+      return;
+    }
+  }
+  renderWriting(index){
+    if(this.state.toggle === 2){
+      return(
+      <View>
+        <CardItem button onPress={()=>{this.props.fetchItems('swt')}}>
+          <Text>Summarize Written Text</Text>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
+        </CardItem>
+        <CardItem button onPress={()=>{this.props.fetchItems('essay')}}>
+          <Text>Essay</Text>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
+        </CardItem>
+      </View>
+    );
+    } else {
+      return;
+    }
+  }
+  renderReading(index){
+    if(this.state.toggle === 3){
+      return(
+      <View>
+        <CardItem button onPress={()=>{this.props.fetchItems('rsc')}}>
+          <Text>Single Choice</Text>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
+        </CardItem>
+        <CardItem button onPress={()=>{this.props.fetchItems('rmc')}}>
+          <Text>Multi Choice</Text>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
+        </CardItem>
+        <CardItem button onPress={()=>{this.props.fetchItems('reorder')}}>
+          <Text>Reorder</Text>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
+        </CardItem>
+        <CardItem button onPress={()=>{this.props.fetchItems('fib')}}>
+          <Text>Fill in blanks</Text>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
+        </CardItem>
+      </View>
+    );
+    } else {
+      return;
+    }
+  }
+  renderListening(index){
+    if(this.state.toggle === 4){
+      return(
+      <View>
+        <CardItem>
+          <Text>Dictation</Text>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
+        </CardItem>
+        <CardItem>
+          <Text>Summarize Spoken Text</Text>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
+        </CardItem>
+        <CardItem>
+          <Text>Single Choice</Text>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
+        </CardItem>
+        <CardItem>
+          <Text>Multi Choice</Text>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
+        </CardItem>
+        <CardItem>
+          <Text>Select Missing Word</Text>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
+        </CardItem>
+        <CardItem>
+          <Text>Select Correct Summary</Text>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
+        </CardItem>
+        <CardItem>
+          <Text>Fill in Blanks</Text>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
+        </CardItem>
+        <CardItem>
+          <Text>Select Incorrect Words</Text>
+          <Right>
+            <Icon name="arrow-forward" />
+          </Right>
+        </CardItem>
+      </View>
+    );
+    } else {
+      return;
+    }
+  }
+
   render() {
     return (
       <Container>
@@ -41,7 +198,7 @@ class ItemsMain extends React.Component {
         </Header>
       <Content padder>
 
-        <Card style={styles.mb}>
+        <Card>
           <CardItem header bordered button onPress={()=>this.onToggle(1)}>
             <Icon active name="logo-facebook" style={{ color: '#3B579D' }} />
             <Text>
@@ -51,43 +208,10 @@ class ItemsMain extends React.Component {
               <Icon name={this.state.toggle === 1 ? "arrow-down" : "arrow-forward"} />
             </Right>
           </CardItem>
-          <View style={this.state.toggle === 1 ? {} : {height: 0, opacity: 0}}>
-
-          <CardItem button onPress={()=>{this.props.fetchItems('ra')}}>
-            <Text>Read Aloud</Text>
-            <Right>
-              <Icon name="arrow-forward" />
-            </Right>
-          </CardItem>
-          <CardItem button onPress={()=>{this.props.fetchItems('rl')}}>
-            <Text>Retell Lecture</Text>
-            <Right>
-              <Icon name="arrow-forward" />
-            </Right>
-          </CardItem>
-          <CardItem button onPress={()=>{this.props.fetchItems('di')}}>
-            <Text>Describe Image</Text>
-            <Right>
-              <Icon name="arrow-forward" />
-            </Right>
-          </CardItem>
-          <CardItem button onPress={()=>{this.props.fetchItems('rs')}}>
-            <Text>Repeat Sentence</Text>
-            <Right>
-              <Icon name="arrow-forward" />
-            </Right>
-          </CardItem>
-          <CardItem button onPress={()=>{this.props.fetchItems('asq')}}>
-            <Text>Answer Short Question</Text>
-            <Right>
-              <Icon name="arrow-forward" />
-            </Right>
-          </CardItem>
-        </View>
-
+          {this.renderSpeaking()}
         </Card>
 
-        <Card style={styles.mb}>
+        <Card>
           <CardItem header bordered button onPress={()=>this.onToggle(2)}>
             <Icon active name="logo-linkedin" style={{ color: '#007BB6' }} />
             <Text>
@@ -97,23 +221,10 @@ class ItemsMain extends React.Component {
               <Icon name={this.state.toggle === 2 ? "arrow-down" : "arrow-forward"} />
             </Right>
           </CardItem>
-          <View style={this.state.toggle === 2 ? {} : {height: 0, opacity: 0}}>
-            <CardItem button onPress={()=>{this.props.fetchItems('swt')}}>
-              <Text>Summarize Written Text</Text>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </CardItem>
-            <CardItem button onPress={()=>{this.props.fetchItems('essayList')}}>
-              <Text>Essay</Text>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </CardItem>
-          </View>
+          {this.renderWriting()}
         </Card>
 
-        <Card style={styles.mb}>
+        <Card>
           <CardItem header bordered button onPress={()=>this.onToggle(3)}>
             <Icon active name="logo-youtube" style={{ color: '#D62727' }} />
             <Text>
@@ -123,35 +234,10 @@ class ItemsMain extends React.Component {
               <Icon name="arrow-down" />
             </Right>
           </CardItem>
-          <View style={this.state.toggle === 3 ? {} : {height: 0, opacity: 0}}>
-            <CardItem button onPress={()=>{this.props.fetchItems('rsc')}}>
-              <Text>Single Choice</Text>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </CardItem>
-            <CardItem button onPress={()=>{this.props.fetchItems('rmc')}}>
-              <Text>Multi Choice</Text>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </CardItem>
-            <CardItem button onPress={()=>{this.props.fetchItems('reorder')}}>
-              <Text>Reorder</Text>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </CardItem>
-            <CardItem button onPress={()=>{this.props.fetchItems('fib')}}>
-              <Text>Fill in blanks</Text>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </CardItem>
-          </View>
+          {this.renderReading()}
         </Card>
 
-        <Card style={styles.mb}>
+        <Card>
           <CardItem header bordered button onPress={()=>this.onToggle(4)}>
             <Icon active name="logo-youtube" style={{ color: '#D62727' }} />
             <Text>
@@ -161,59 +247,8 @@ class ItemsMain extends React.Component {
               <Icon name={this.state.toggle === 4 ? "arrow-down" : "arrow-forward"} />
             </Right>
           </CardItem>
-          <View style={this.state.toggle === 4 ? {} : {height: 0, opacity: 0}}>
-            <CardItem>
-              <Text>Dictation</Text>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </CardItem>
-            <CardItem>
-              <Text>Summarize Spoken Text</Text>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </CardItem>
-            <CardItem>
-              <Text>Single Choice</Text>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </CardItem>
-            <CardItem>
-              <Text>Multi Choice</Text>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </CardItem>
-            <CardItem>
-              <Text>Select Missing Word</Text>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </CardItem>
-            <CardItem>
-              <Text>Select Correct Summary</Text>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </CardItem>
-            <CardItem>
-              <Text>Fill in Blanks</Text>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </CardItem>
-            <CardItem>
-              <Text>Select Incorrect Words</Text>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </CardItem>
-          </View>
+          {this.renderListening()}
         </Card>
-
-
       </Content>
       </Container>
     );

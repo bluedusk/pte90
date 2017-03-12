@@ -16,14 +16,14 @@ export const fetchPositions = (type) => {
       // });
       const response = await fetch('POSITIONS_URL');
       const responseJson = await response.json()
-      console.log(responseJson);
+      //console.log(responseJson);
       dispatch({
         type: FETCH_POSITIONS,
         payload: responseJson,
       });
 
     } catch (e) {
-      console.log(e);
+      //console.log(e);
 
     }
   };
@@ -39,14 +39,14 @@ export const positionNew = () => {
       // });
       const response = await fetch('http://rap.taobao.org/mockjsdata/14377/positions');
       const responseJson = await response.json()
-      console.log(responseJson);
+      //console.log(responseJson);
       dispatch({
         type: FETCH_POSITIONS,
         payload: responseJson,
       });
 
     } catch (e) {
-      console.log(e);
+      //console.log(e);
     }
   };
 };
@@ -61,14 +61,14 @@ export const delPosition = () => {
       // });
       const response = await fetch('http://rap.taobao.org/mockjsdata/14377/positions');
       const responseJson = await response.json()
-      console.log(responseJson);
+      //console.log(responseJson);
       dispatch({
         type: DEL_POSITION,
         payload: responseJson,
       });
 
     } catch (e) {
-      console.log(e);
+      //console.log(e);
     }
   };
 };

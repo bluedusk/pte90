@@ -31,7 +31,7 @@ class EssaySamples extends React.Component {
 
   renderList(){
     const { samples } = this.props;
-    console.log(samples);
+    //console.log(samples);
     // const itemArray = test2;
      return samples.map((item)=>{
        return(

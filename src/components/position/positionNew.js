@@ -39,7 +39,7 @@ class PositionNew extends React.Component {
     let item = {};
     item.text = this.state.bodyText;
     item.type = this.props.transferType;
-    console.log(item);
+    //console.log(item);
     this.props.positionNew(item);
   }
 

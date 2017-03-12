@@ -16,7 +16,7 @@ class UserItems extends React.Component {
   }
 
   onDeleteItem(id){
-    console.log(id);
+    //console.log(id);
     AlertIOS.alert(
      'Update available',
      'Keep your app up to date to enjoy the latest features',

@@ -40,12 +40,12 @@ class ExpNew extends React.Component {
     let item = {};
     item.text = this.state.bodyText;
     item.type = this.props.transferType;
-    console.log(item);
+    //console.log(item);
     this.props.positionNew(item);
   }
 
   onFocus(){
-    console.log('on focus');
+    //console.log('on focus');
     this.setState({KeyboardShown:!this.state.KeyboardShown});
     if (!this.state.KeyboardShown) {
       Keyboard.dismiss();

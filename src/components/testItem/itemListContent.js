@@ -22,7 +22,7 @@ class ItemListContent extends React.Component {
     if(!array || array.length == 0){
       return <Text>loading...</Text>
     }
-    console.log(array);
+    //console.log(array);
     let res = array.map(item =>{
       return(
         <Card style={styles.mb} key={item.itemId}>

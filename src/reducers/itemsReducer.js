@@ -1,5 +1,7 @@
 import {
-  FETCH_ITEMS
+  FETCH_ITEMS,
+  FETCH_ITEMS_SUCCESS,
+  FETCH_ITEMS_FAIL
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -10,10 +12,14 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
-  //console.log(action.payload);
+  console.log(action.type);
   switch (action.type) {
     case FETCH_ITEMS:
-      return { ...state, array: action.payload.resBody };
+      return { ...state, loading: true };
+    case FETCH_ITEMS_SUCCESS:
+      return { ...state, array: action.payload.resBody, loading: false };
+    case FETCH_ITEMS_FAIL:
+      return { ...state, error: action.payload, loading: false };
     // case EMAIL_CHANGED:
     //   return { ...state, email: action.payload };
     // case PASSWORD_CHANGED:

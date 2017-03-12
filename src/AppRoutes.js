@@ -1,16 +1,15 @@
 
 import React, { Component } from 'react';
-import { View, BackAndroid, StatusBar, NavigationExperimental, Platform } from 'react-native';
 import { connect } from 'react-redux';
-import { Text, Button, Icon, Header, Left, Right, Title, Body, Container, Content, StyleProvider, getTheme, variables, Drawer } from 'native-base';
+import { Text, Button, Header, Container, Content, StyleProvider, getTheme, variables } from 'native-base';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Actions, Router, Scene } from 'react-native-router-flux';
 
 import ItemsMain from './components/testItem/itemsMain';
 import PTEFooter from './components/common/pteFooter';
-import Tab2 from './components/tab2';
-import Tab3 from './components/tab3';
-import Tab4 from './components/tab4';
+import UserCenter from './components/me/userCenter';
+import Discover from './components/discover/discover';
+import Position from './components/position/position';
 import ReadAloud from './components/testItem/readAloud';
 import NewItem from './components/testItem/newItem';
 import RetellLecture from './components/testItem/retellLecture';
@@ -26,9 +25,6 @@ import ItemListContent from './components/testItem/itemListContent';
 import ReorderDetail from './components/testItem/reorder';
 import EssayList from './components/testItem/essayList';
 import EssaySamples from './components/testItem/essaySamples';
-import UserCenter from './components/me/userCenter';
-import Discover from './components/discover/discover';
-import Position from './components/position/position';
 import PositionTransfer from './components/position/positionTransfer';
 import PositionQuery from './components/position/positionQuery';
 import PositionNew from './components/position/positionNew';
@@ -48,7 +44,7 @@ class AppRoutes extends Component {
 
   render(){
     return(
-      <StyleProvider style={getTheme((this.props.themeState === 'material') ? material : undefined)}>
+      // <StyleProvider style={getTheme((this.props.themeState === 'material') ? material : undefined)}>
 
         <Container>
           {/* <StatusBar /> */}
@@ -56,11 +52,11 @@ class AppRoutes extends Component {
           {/* <Content padder /> */}
 
           <RouterWithRedux>
-            <Scene key="root">
-              <Scene key="tab1" component={ItemsMain} hideNavBar title="机经" initial={true} />
-              <Scene key="tab2" component={Tab2} title="Tab2" />
-              <Scene key="tab3" component={Tab3} title="Tab3" />
-              <Scene key="tab4" component={UserCenter} title="Tab4" />
+            <Scene key='root' hideNavBar>
+              <Scene key="tab1" component={ItemsMain} hideNavBar title="机经" initial={true} type="replace"/>
+              <Scene key="tab4" component={UserCenter} title="Tab4" type="replace"/>
+              <Scene key="position" component={Position} title="Position" type="replace"/>
+              <Scene key="discover" component={Discover} title="Discover" type="replace"/>
               <Scene key="readAloud" component={ReadAloud} title="ReadAloud" />
               <Scene key="newItem" component={NewItem} title="NewItem" />
               <Scene key="retellLecture" component={RetellLecture} title="RetellLecture" />
@@ -76,9 +72,6 @@ class AppRoutes extends Component {
               <Scene key="reorder" component={ReorderDetail} title="ReorderDetail" />
               <Scene key="essayList" component={EssayList} title="essayList" />
               <Scene key="essaySamples" component={EssaySamples} title="essaySamples" />
-              <Scene key="userCenter" component={UserCenter} title="Tab4" />
-              <Scene key="discover" component={Discover} title="Discover" />
-              <Scene key="position" component={Position} title="Position" />
               <Scene key="positionTransfer" component={PositionTransfer} title="PositionTransfer" />
               <Scene key="positionQuery" component={PositionQuery} title="PositionQuery" />
               <Scene key="positionNew" component={PositionNew} title="PositionNew" />
@@ -90,7 +83,7 @@ class AppRoutes extends Component {
           </RouterWithRedux>
           <PTEFooter />
         </Container>
-      </StyleProvider>
+      // </StyleProvider>
     );
   }
 }

@@ -6,7 +6,7 @@ import { NEWITEM_URL } from './config';
 
 
 export const newItem = (item) => {
-  console.log(item);
+  //console.log(item);
 
   // redux thunk , return a function
   return async (dispatch, getState) => {
@@ -15,7 +15,7 @@ export const newItem = (item) => {
       //   type: FETCH_ITEMS,
       //   payload: {},
       // });
-      console.log(JSON.stringify(item))
+      //console.log(JSON.stringify(item))
 
       const response = await fetch(NEWITEM_URL, {
         method: 'POST',
@@ -26,14 +26,14 @@ export const newItem = (item) => {
         body: JSON.stringify(item)
       });
       const responseJson = await response.json()
-      console.log(responseJson);
+      //console.log(responseJson);
       dispatch({
         type: NEW_ITEM,
         payload: responseJson,
       });
 
     } catch (e) {
-      console.log(e);
+      //console.log(e);
 
     }
 

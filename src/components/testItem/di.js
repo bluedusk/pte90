@@ -29,7 +29,7 @@ class DI extends React.Component {
 
   renderList(){
     const { array } = this.props.itemList;
-    console.log(array);
+    //console.log(array);
     if(!array || array.length === 0){
       return <Text>loading...</Text>
     }

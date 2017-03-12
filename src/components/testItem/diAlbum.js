@@ -45,10 +45,10 @@ class DIAlbum extends React.Component {
     if(!array || array.length == 0){
       return <Text style={{alignSelf:"flex-start"}}>loading...</Text>
     }
-    console.log(this);
+    //console.log(this);
     let index = this.state.selectedIndex;
     const filterArray = _.filter(array, function(o) { return o.imageType === index; });
-    console.log(filterArray);
+    //console.log(filterArray);
     let res = filterArray.map(item =>{
       const imageSrouce = item.imageSrc;
       return(

@@ -15,14 +15,14 @@ export const fetchUser = (type) => {
       // });
       const response = await fetch(FETCHUSER_URL);
       const responseJson = await response.json()
-      console.log(responseJson);
+      // console.log(responseJson);
       dispatch({
         type: FETCH_USER,
         payload: responseJson,
       });
 
     } catch (e) {
-      console.log(e);
+      //console.log(e);
 
     }
 

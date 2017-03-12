@@ -1,7 +1,9 @@
 import { Actions } from 'react-native-router-flux';
 import {
   FETCH_ITEMS,
-  FETCH_USERITEMS
+  FETCH_USERITEMS,
+  FETCH_ITEMS_SUCCESS,
+  FETCH_ITEMS_FAIL
 } from './types';
 import { TESTITEMS_URL } from './config';
 
@@ -39,41 +41,32 @@ export const fetchItems = (type) => {
     case 'swt':
       Actions['itemList']({header:'SWT'});
       break;
-    case 'essayList':
+    case 'essay':
       Actions['essayList']({header:'Essay'});
       break;
     default:
   }
 
   return async (dispatch, getState) => {
+    dispatch({
+      type: FETCH_ITEMS
+    });
     try {
-      // dispatch({
-      //   type: FETCH_ITEMS,
-      //   payload: {},
-      // });
       const response = await fetch(`${TESTITEMS_URL}/${type}`);
       const responseJson = await response.json()
       //console.log(responseJson);
       dispatch({
-        type: FETCH_ITEMS,
-        payload: responseJson,
+        type: FETCH_ITEMS_SUCCESS,
+        payload: responseJson
       });
 
     } catch (e) {
-      console.log(e);
-
+      //console.log(e);
+      dispatch({
+        type: FETCH_ITEMS_FAIL,
+        payload: e
+      });
     }
-    // dispatch({ type: LOGIN_USER });
-    //
-    // firebase.auth().signInWithEmailAndPassword(email, password)
-    //   .then(user => loginUserSuccess(dispatch, user))
-    //   .catch((error) => {
-    //     console.log(error);
-    //
-    //     firebase.auth().createUserWithEmailAndPassword(email, password)
-    //       .then(user => loginUserSuccess(dispatch, user))
-    //       .catch(() => loginUserFail(dispatch));
-    //   });
   };
 };
 
@@ -87,14 +80,14 @@ export const fetchUserItems = (user) => {
       // });
       const response = await fetch(`${TESTITEMS_URL}/?contributor=${user}`);
       const responseJson = await response.json()
-      console.log(responseJson);
+      //console.log(responseJson);
       dispatch({
         type: FETCH_USERITEMS,
         payload: responseJson,
       });
 
     } catch (e) {
-      console.log(e);
+      //console.log(e);
     }
   };
 };
@@ -109,14 +102,14 @@ export const delItem = (id) => {
       // });
       const response = await fetch(`${TESTITEMS_URL}/?contributor=${user}`);
       const responseJson = await response.json()
-      console.log(responseJson);
+      //console.log(responseJson);
       dispatch({
         type: FETCH_USERITEMS,
         payload: responseJson,
       });
 
     } catch (e) {
-      console.log(e);
+      //console.log(e);
     }
   };
 };

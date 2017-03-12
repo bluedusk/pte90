@@ -30,8 +30,18 @@ class UserCenter extends Component {
       },
     };
   }
-
+  componentWillUnmount(){
+    console.log("user center componentWillUnmount");
+  // query user info
+    this.props.fetchUser();
+  }
   componentWillMount(){
+    console.log("user center load");
+  // query user info
+    this.props.fetchUser();
+  }
+  componentDidMount(){
+    console.log("user center componentDidMount");
   // query user info
     this.props.fetchUser();
   }
@@ -61,9 +71,6 @@ class UserCenter extends Component {
       <Container style={styles.container}>
         <Header>
           <Left>
-            {/* <Button transparent onPress={() => Actions.pop()}>
-              <Icon name="arrow-back" />
-            </Button> */}
           </Left>
           <Body>
             <Title>我</Title>

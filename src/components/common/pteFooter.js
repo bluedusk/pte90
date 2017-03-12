@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Container, Content, Footer, FooterTab, Button, Icon, Text } from 'native-base';
+import {  Footer, FooterTab, Button, Icon, Text } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 
@@ -24,6 +24,7 @@ class PTEFooter extends Component {
       tab3: false,
       tab4: false,
     });
+    // Actions.pop();
     Actions['tab1']();
   }
 
@@ -34,6 +35,8 @@ class PTEFooter extends Component {
       tab3: false,
       tab4: false,
     });
+    // Actions.pop();
+    //
     Actions['discover']();
   }
 
@@ -44,6 +47,8 @@ class PTEFooter extends Component {
       tab3: true,
       tab4: false,
     });
+    // Actions.pop();
+    //
     Actions['position']();
   }
 
@@ -54,6 +59,8 @@ class PTEFooter extends Component {
       tab3: false,
       tab4: true,
     });
+    // Actions.pop();
+
     Actions['tab4']();
   }
 
