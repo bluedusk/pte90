@@ -5,32 +5,46 @@ import { Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, 
 import { Actions } from 'react-native-router-flux';
 import { iMap } from '../../config/config';
 import styles from '../../styles/itemsMainStyle';
+import _ from 'lodash';
 
 class UserItems extends React.Component {
 
   constructor(props){
     super(props);
     this.state = {
-      toggle:0
+      array:[]
     }
+  }
+  componentWillReceiveProps(props){
+    console.log("componentWillReceiveProps");
+    console.log(props.itemList.array);
+    this.setState({array:props.itemList.array})
   }
 
   onDeleteItem(id){
     //console.log(id);
     AlertIOS.alert(
-     'Update available',
+     ' 确认删除 ?',
      'Keep your app up to date to enjoy the latest features',
      [
-       {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-       {text: 'Delete', onPress: () => console.log('Install Pressed')},
+       {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+       {text: '删除', onPress: () => this.onDeleteConform(id)},
      ],
     );
     // this.props.delItem(id);
   }
 
+  onDeleteConform(id){
+    console.log(id);
+    let array = this.state.array;
+    let result = _.remove(array,function(item){ return item.itemId == id});
+    console.log(array);
+    this.setState({array:array});
+  }
+
   renderList(){
-    //console.log(this.props);
-    const { array } = this.props.itemList;
+    // console.log(this.props.itemList.array);
+    const { array } = this.state;
     if(!array || array.length == 0){
       return <Text>loading...</Text>
     }

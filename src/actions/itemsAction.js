@@ -78,6 +78,7 @@ export const fetchUserItems = (user) => {
       //   type: FETCH_ITEMS,
       //   payload: {},
       // });
+      console.log(`${TESTITEMS_URL}/?contributor=${user}`);
       const response = await fetch(`${TESTITEMS_URL}/?contributor=${user}`);
       const responseJson = await response.json()
       //console.log(responseJson);

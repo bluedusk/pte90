@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Platform, Text } from 'react-native';
-import { actions } from 'react-native-navigation-redux-helpers';
+// import { actions } from 'react-native-navigation-redux-helpers';
 import { Container, Header, Title, Content, Button, Icon, ListItem, Badge, Left, Right, Body, Switch, Radio, Picker, Separator } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { fetchUser } from '../../actions/userAction';
@@ -13,9 +13,9 @@ import styles from '../../styles/styles';
 
 const Item = Picker.Item;
 
-const {
-  popRoute,
-} = actions;
+// const {
+//   popRoute,
+// } = actions;
 
 class UserCenter extends Component {
 
