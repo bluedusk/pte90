@@ -25,7 +25,7 @@ class UserItems extends React.Component {
     //console.log(id);
     AlertIOS.alert(
      ' 确认删除 ?',
-     'Keep your app up to date to enjoy the latest features',
+     '',
      [
        {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
        {text: '删除', onPress: () => this.onDeleteConform(id)},
@@ -38,11 +38,11 @@ class UserItems extends React.Component {
     console.log(id);
     let array = this.state.array;
     let result = _.remove(array,function(item){ return item.itemId == id});
-    console.log(array);
     this.setState({array:array});
   }
 
   renderList(){
+    /// hello
     // console.log(this.props.itemList.array);
     const { array } = this.state;
     if(!array || array.length == 0){
