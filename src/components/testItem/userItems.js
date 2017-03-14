@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { AlertIOS } from 'react-native';
+import { AlertIOS, ListView } from 'react-native';
 import { Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { iMap } from '../../config/config';
@@ -12,13 +12,20 @@ class UserItems extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      array:[]
+      array:[],
+      dataSource:{}
     }
+  }
+  componentWillMount() {
+    this.createDataSource(this.props.itemList.array);
   }
   componentWillReceiveProps(props){
     console.log("componentWillReceiveProps");
-    console.log(props.itemList.array);
+    //console.log(props.itemList.array);
     this.setState({array:props.itemList.array})
+
+    this.createDataSource(props.itemList.array)
+
   }
 
   onDeleteItem(id){
@@ -38,7 +45,55 @@ class UserItems extends React.Component {
     console.log(id);
     let array = this.state.array;
     let result = _.remove(array,function(item){ return item.itemId == id});
-    this.setState({array:array});
+    this.createDataSource(this.state.array);
+  }
+
+  createDataSource(items) {
+    console.log(items);
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    });
+    //console.log(this);
+    this.setState({array:items,dataSource:ds.cloneWithRows(items)});
+  }
+  renderRow(item){
+    //console.log(this);
+    return(
+      <Card style={styles.mb}>
+        <CardItem content bordered>
+          <Body>
+            <Text>{iMap[item.itemType].long}</Text>
+            <Text style={{color:'pink',fontSize:10}}>by {item.contributor}, 1天前</Text>
+          </Body>
+        </CardItem>
+        <CardItem content bordered>
+          <Body>
+            <Text>{item.itemText}</Text>
+          </Body>
+        </CardItem>
+        <CardItem>
+          <Left>
+            <Button transparent>
+              <Icon active name="thumbs-up" />
+              <Text>  {item.tested} 考过</Text>
+            </Button>
+          </Left>
+          <Body style={{alignItems:'center',justifyContent:'center'}}>
+            <Button transparent
+              style={{alignItems:'center',justifyContent:'center'}}
+              onPress={()=>this.onDeleteItem(item.itemId)}
+              >
+              <Text>删除</Text>
+            </Button>
+          </Body>
+          <Right>
+            <Button transparent>
+              <Text> 讨论</Text>
+            </Button>
+          </Right>
+        </CardItem>
+      </Card>
+    );
   }
 
   renderList(){
@@ -108,9 +163,19 @@ class UserItems extends React.Component {
               {/* <Button transparent onPress={()=>{Actions['newItem']({itemType:'ra'})}}><Text>Add</Text></Button> */}
             </Right>
         </Header>
+
         <Content padder>
-          { this.renderList() }
+          <ListView
+            initialListSize={1}
+            pageSize={3}
+            enableEmptySections
+            dataSource={this.state.dataSource}
+            renderRow={this.renderRow.bind(this)}
+          />
         </Content>
+        {/* <Content padder>
+          { this.renderList() }
+        </Content> */}
       </Container>
     );
   }
