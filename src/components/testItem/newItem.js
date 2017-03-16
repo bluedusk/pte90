@@ -5,6 +5,7 @@ import { View, Dimensions, TextInput } from 'react-native';
 import { Segment, Container, Header, Title, Spinner, Item, Label, Input, Form, Text, Button, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { newItem } from '../../actions/newItemAction';
+import { _getUser } from '../../service/localStorage';
 import styles from '../../styles/itemsMainStyle';
 
 const deviceWidth = Dimensions.get('window').width;
@@ -17,9 +18,23 @@ class NewItem extends React.Component {
     this.state = {
       bodyText: '',
       process: 0,
-      request: {}
+      request: {},
+      user:{}
     }
 
+  }
+  // can i use async in lifecycle method ?
+  async componentWillMount(){
+    let user = await _getUser();
+    this.setState({user:user})
+  }
+
+  componentWillReceiveProps(nextProps){
+    console.log(123456);
+    console.log(nextProps.newItem);
+    if (nextProps.newItemData.success) {
+      Actions['userItems']({header:"我的分享"});
+    }
   }
 
   rightBtn(){
@@ -38,9 +53,11 @@ class NewItem extends React.Component {
     let item = {};
     item.itemText = this.state.bodyText;
     item.itemType = this.props.itemType;
+    item.contributor = this.state.user.name; // user name for now
     console.log(item);
     this.props.newItem(item);
   }
+
 
   render() {
     return (
@@ -66,6 +83,7 @@ class NewItem extends React.Component {
               <Input style={{height:300, backgroundColor:'white'}}
                   multiline={true}
                   numberOfLines={40}
+                  autoCorrect={false}
                   onChangeText={(bodyText) => this.setState({bodyText})}
                 />
             </Item>
@@ -93,4 +111,8 @@ function mapDispatchToProps(dispatch){
   return bindActionCreators({ newItem }, dispatch);
 }
 
-export default connect(null,mapDispatchToProps)(NewItem);
+const mapStateToProps = (state)=>{
+  return { newItemData: state.newItem };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(NewItem);

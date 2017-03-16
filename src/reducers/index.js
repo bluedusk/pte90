@@ -5,6 +5,7 @@ import PositionReducer from './positionReducer';
 import EXPReducer from './expReducer';
 import UserReducer from './userReducer';
 import UserItemsReducer from './userItemsReducer';
+import NewItem from './newItemReducer';
 
 import routes from './routes';
 
@@ -15,5 +16,6 @@ export default combineReducers({
   currentItem: CurrentItemReducer,
   positions: PositionReducer,
   exps: EXPReducer,
-  user: UserReducer
+  user: UserReducer,
+  newItem: NewItem
 });

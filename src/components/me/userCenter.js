@@ -33,13 +33,9 @@ class UserCenter extends Component {
   componentWillUnmount(){
     console.log("user center componentWillUnmount");
   // query user info
-    this.props.fetchUser();
+  //  this.props.fetchUser();
   }
-  componentWillMount(){
-    console.log("user center load");
-  // query user info
-    this.props.fetchUser();
-  }
+
   componentDidMount(){
     console.log("user center componentDidMount");
   // query user info
@@ -62,6 +58,11 @@ class UserCenter extends Component {
         Actions.positionTransfer();
         this.props.fetchPositions('userid');
         break;
+      case 'items':
+      console.log(this.props.user)
+        // TODO hardcode user
+        Actions.userItems({header:'我的分享',user:{name:'dan'}});
+        break;
       default:
     }
   }
@@ -79,7 +80,7 @@ class UserCenter extends Component {
         </Header>
 
         <Content>
-          <Separator bordered noTopBorder />
+          {/* <Separator bordered noTopBorder /> */}
           <ListItem icon>
             <Left>
               <Button style={{ backgroundColor: '#5855D6' }}>
@@ -106,7 +107,7 @@ class UserCenter extends Component {
               {(Platform.OS === 'ios') && <Icon active name="arrow-forward" />}
             </Right>
           </ListItem>
-          <ListItem icon button onPress={()=>{}}>
+          <ListItem icon button onPress={this.onItemPress.bind(this,'items')}>
             <Left>
               <Button style={{ backgroundColor: '#5855D6' }}>
                 <Icon active name="moon" />

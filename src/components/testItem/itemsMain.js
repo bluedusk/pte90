@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Text, View } from 'react-native';
+import { Text, View, AsyncStorage } from 'react-native';
 import { Header, Container, Content, Card, CardItem, Icon, Left, Title, Body, Button, Right } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { fetchItems } from '../../actions/itemsAction';
@@ -18,6 +18,25 @@ class ItemsMain extends React.Component {
     }
 
   }
+
+  componentWillMount(){
+
+    this._loadInitialState().done();
+  }
+
+  _loadInitialState = async () => {
+   try {
+     let user = {name:"dan",id:""};
+
+     let promise = await AsyncStorage.setItem('@user:key', JSON.stringify(user));
+
+     var value = await AsyncStorage.getItem('@user:key');
+     console.dir(value.toString());
+
+   }catch (error){
+
+   }
+ };
 
   onToggle(index){
     if (index === this.state.toggle) {

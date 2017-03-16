@@ -101,7 +101,15 @@ export const delItem = (id) => {
       //   type: FETCH_ITEMS,
       //   payload: {},
       // });
-      const response = await fetch(`${TESTITEMS_URL}/?contributor=${user}`);
+      const response = await fetch(`${TESTITEMS_URL}/${id}`,
+        {
+          method: 'DELETE',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          }
+        }
+      );
       const responseJson = await response.json()
       //console.log(responseJson);
       dispatch({

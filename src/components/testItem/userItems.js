@@ -1,10 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { AlertIOS, ListView } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { AlertIOS, ListView, AsyncStorage } from 'react-native';
 import { Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { iMap } from '../../config/config';
+import { fetchUserItems } from '../../actions/itemsAction';
+
 import styles from '../../styles/itemsMainStyle';
+import { delItem } from '../../actions/itemsAction';
+
 import _ from 'lodash';
 
 class UserItems extends React.Component {
@@ -13,17 +18,35 @@ class UserItems extends React.Component {
     super(props);
     this.state = {
       array:[],
-      dataSource:{}
+      dataSource:{},
+      user:{}
     }
   }
+
+  // get current user from AsyncStorage
+  _loadInitialState = async () => {
+   try {
+     var value = await AsyncStorage.getItem('@user:key');
+     this.setState({user:{name:JSON.parse(value).name}});
+     console.log("user: "+this.state.user.name);
+
+   }catch (error){
+     console.log(error)
+   }
+ };
+
   componentWillMount() {
+    this._loadInitialState().done();
     this.createDataSource(this.props.itemList.array);
+  }
+  componentDidMount(){
+    // TODO hardcode user.name
+    this.props.fetchUserItems(this.props.user.name);
   }
   componentWillReceiveProps(props){
     console.log("componentWillReceiveProps");
     //console.log(props.itemList.array);
     this.setState({array:props.itemList.array})
-
     this.createDataSource(props.itemList.array)
 
   }
@@ -43,9 +66,14 @@ class UserItems extends React.Component {
 
   onDeleteConform(id){
     console.log(id);
+    // remove item from listview
     let array = this.state.array;
     let result = _.remove(array,function(item){ return item.itemId == id});
     this.createDataSource(this.state.array);
+
+    // call remove action
+    this.props.delItem(id);
+
   }
 
   createDataSource(items) {
@@ -55,6 +83,21 @@ class UserItems extends React.Component {
     });
     //console.log(this);
     this.setState({array:items,dataSource:ds.cloneWithRows(items)});
+  }
+  // only show Delete button to current user
+  renderDeleteBtn(item){
+    if(item.contributor == this.state.user.name){
+      return (
+        <Body style={{alignItems:'center',justifyContent:'center'}}>
+          <Button transparent
+            style={{alignItems:'center',justifyContent:'center'}}
+            onPress={()=>this.onDeleteItem(item.itemId)}
+            >
+            <Text>删除</Text>
+          </Button>
+        </Body>
+      );
+    }
   }
   renderRow(item){
     //console.log(this);
@@ -66,26 +109,19 @@ class UserItems extends React.Component {
             <Text style={{color:'pink',fontSize:10}}>by {item.contributor}, 1天前</Text>
           </Body>
         </CardItem>
-        <CardItem content bordered>
+        <CardItem  bordered>
           <Body>
             <Text>{item.itemText}</Text>
           </Body>
         </CardItem>
-        <CardItem>
+        <CardItem style={{paddingTop:0, paddingBottom:0}}>
           <Left>
             <Button transparent>
               <Icon active name="thumbs-up" />
               <Text>  {item.tested} 考过</Text>
             </Button>
           </Left>
-          <Body style={{alignItems:'center',justifyContent:'center'}}>
-            <Button transparent
-              style={{alignItems:'center',justifyContent:'center'}}
-              onPress={()=>this.onDeleteItem(item.itemId)}
-              >
-              <Text>删除</Text>
-            </Button>
-          </Body>
+            { this.renderDeleteBtn(item) }
           <Right>
             <Button transparent>
               <Text> 讨论</Text>
@@ -166,8 +202,8 @@ class UserItems extends React.Component {
 
         <Content padder>
           <ListView
-            initialListSize={1}
-            pageSize={3}
+            // initialListSize={5}
+            // pageSize={10}
             enableEmptySections
             dataSource={this.state.dataSource}
             renderRow={this.renderRow.bind(this)}
@@ -181,8 +217,12 @@ class UserItems extends React.Component {
   }
 }
 
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ delItem, fetchUserItems },dispatch);
+}
+
 const mapStateToProps = (state) => {
   return { itemList : state.userItems };
 }
 
-export default connect(mapStateToProps)(UserItems);
+export default connect(mapStateToProps, mapDispatchToProps)(UserItems);
