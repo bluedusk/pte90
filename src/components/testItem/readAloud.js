@@ -14,11 +14,12 @@ class ReadAloud extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      toggle:0
+      array:[],
+      loading:true
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
     // requestAnimationFrame(()=>this.props.fetchItems('ra'),1000) ;
     // setTimeout(()=>this.props.fetchItems('ra'),500);
     InteractionManager.runAfterInteractions(() => {
@@ -28,11 +29,18 @@ class ReadAloud extends React.Component {
 
   }
 
+  componentWillReceiveProps(nextProps){
+    console.log("componentWillReceiveProps");
+    console.log(nextProps);
+    let response = nextProps.itemList;
+    this.setState({array: response.array, loading: response.loading})
+  }
+
   renderList(){
     //console.log(this.props);
-    const { array } = this.props.itemList;
-    console.log(this.props.itemList);
-    if(this.props.itemList.loading && array.length == 0){
+    const { array } = this.state;
+    //console.log(this.props.itemList);
+    if(this.state.loading && array.length == 0){
       return <Text>loading...</Text>
     }
     let res = array.map(item =>{

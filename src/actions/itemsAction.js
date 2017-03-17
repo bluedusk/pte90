@@ -15,13 +15,13 @@ export const fetchItems = (type) => {
       Actions['readAloud']({itemType:type,header:'Read Aloud'});
       break;
     case 'rl':
-      Actions['retellLecture']();
+      Actions['retellLecture']({itemType:type,header:'Retell Leture'});
       break;
     case 'di':
       Actions['diAlbum']();
       break;
     case 'asq':
-      Actions['asqList']();
+      Actions['asqList']({itemType:type,header:'ASQ'});
       break;
     case 'rs':
       Actions['rs']();

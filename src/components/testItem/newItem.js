@@ -31,9 +31,10 @@ class NewItem extends React.Component {
 
   componentWillReceiveProps(nextProps){
     console.log(123456);
-    console.log(nextProps.newItem);
-    if (nextProps.newItemData.success) {
-      Actions['userItems']({header:"我的分享"});
+    console.log(nextProps.newItemData);
+    // add item success, then go to useritems page
+    if (nextProps.newItemData.success) {console.log(123);
+      Actions['userItems']({user:{name:'dan'},header:"我的分享"});
     }
   }
 
@@ -53,7 +54,8 @@ class NewItem extends React.Component {
     let item = {};
     item.itemText = this.state.bodyText;
     item.itemType = this.props.itemType;
-    item.contributor = this.state.user.name; // user name for now
+    item.contributor = this.state.user.name; //TODO user name for now
+    item.tested = 1;
     console.log(item);
     this.props.newItem(item);
   }

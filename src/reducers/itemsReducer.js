@@ -14,7 +14,8 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_ITEMS:
-      return { ...state, loading: true };
+    // need to set array to [], unless data in last state will shown
+      return { ...state, loading: true, array:[] };
     case FETCH_ITEMS_SUCCESS:
       return { ...state, array: action.payload.resBody, loading: false };
     case FETCH_ITEMS_FAIL:
