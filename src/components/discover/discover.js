@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Text } from 'react-native';
+import { Text, AsyncStorage } from 'react-native';
 import { Segment, List, ListItem, Header, Title, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { fetchExps } from '../../actions/expAction';
@@ -16,9 +16,16 @@ class Discover extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      selectedItemId:''
+      selectedItemId:'',
+      user:{}
     }
   }
+
+  // async componentWillMount() {
+  //   var value = await AsyncStorage.getItem('@user:key');
+  //   this.setState({user:{name:JSON.parse(value).name}});
+  //   console.log("user: "+this.state.user.name);
+  // }
 
   onBtnPress(id){
     if (id==1) {
@@ -26,8 +33,9 @@ class Discover extends React.Component {
       this.props.fetchExps();
     }
     else{
-      Actions.userItems({header:"机经分享"});
-      this.props.fetchUserItems('user');
+      // display all user items
+      Actions.userItems({header:"机经分享",user:{name:'user'}});
+      // this.props.fetchUserItems('user');
     }
     // this.props.fetchCurrItem(id);
   }

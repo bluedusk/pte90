@@ -113,7 +113,7 @@ export const delItem = (id) => {
       const responseJson = await response.json()
       //console.log(responseJson);
       dispatch({
-        type: FETCH_USERITEMS,
+        type: DEL_ITEM,
         payload: responseJson,
       });
 

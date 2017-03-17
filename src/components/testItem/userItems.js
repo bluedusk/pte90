@@ -26,22 +26,30 @@ class UserItems extends React.Component {
   // get current user from AsyncStorage
   _loadInitialState = async () => {
    try {
-     var value = await AsyncStorage.getItem('@user:key');
-     this.setState({user:{name:JSON.parse(value).name}});
-     console.log("user: "+this.state.user.name);
+
 
    }catch (error){
      console.log(error)
    }
  };
 
-  componentWillMount() {
-    this._loadInitialState().done();
+  async componentWillMount() {
+    console.log("componentWillMount");
     this.createDataSource(this.props.itemList.array);
+
+    var value = await AsyncStorage.getItem('@user:key');
+    this.setState({user:{name:JSON.parse(value).name}});
+    console.log("user: "+this.state.user.name);
+    // take props.user, display all/current user items
+    // Discover -> user = user -> display all user items;
+    // Me -> user = currentUser -> display current user items
+    // Delete button will depend on this.state.user.name
+    this.props.fetchUserItems(this.props.user.name);
+
   }
   componentDidMount(){
+    console.log("componentDidMount");
     // TODO hardcode user.name
-    this.props.fetchUserItems(this.props.user.name);
   }
   componentWillReceiveProps(props){
     console.log("componentWillReceiveProps");
@@ -49,6 +57,14 @@ class UserItems extends React.Component {
     this.setState({array:props.itemList.array})
     this.createDataSource(props.itemList.array)
 
+  }
+  createDataSource(items) {
+    console.log(items);
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    });
+    //console.log(this);
+    this.setState({array:items,dataSource:ds.cloneWithRows(items)});
   }
 
   onDeleteItem(id){
@@ -76,14 +92,7 @@ class UserItems extends React.Component {
 
   }
 
-  createDataSource(items) {
-    console.log(items);
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    });
-    //console.log(this);
-    this.setState({array:items,dataSource:ds.cloneWithRows(items)});
-  }
+
   // only show Delete button to current user
   renderDeleteBtn(item){
     if(item.contributor == this.state.user.name){
@@ -100,7 +109,7 @@ class UserItems extends React.Component {
     }
   }
   renderRow(item){
-    //console.log(this);
+    console.log("render page");
     return(
       <Card style={styles.mb}>
         <CardItem content bordered>
