@@ -38,13 +38,14 @@ class UserItems extends React.Component {
     this.createDataSource(this.props.itemList.array);
 
     var value = await AsyncStorage.getItem('@user:key');
-    this.setState({user:{name:JSON.parse(value).name}});
+    this.setState({user:JSON.parse(value)});
     console.log("user: "+this.state.user.name);
     // take props.user, display all/current user items
     // Discover -> user = user -> display all user items;
     // Me -> user = currentUser -> display current user items
     // Delete button will depend on this.state.user.name
-    this.props.fetchUserItems(this.props.user.name);
+    console.log(this.props);
+    this.props.fetchUserItems(this.props.user.id);
 
   }
   componentDidMount(){
@@ -95,7 +96,7 @@ class UserItems extends React.Component {
 
   // only show Delete button to current user
   renderDeleteBtn(item){
-    if(item.contributor == this.state.user.name){
+    if(item.contributor == this.state.user.id){
       return (
         <Body style={{alignItems:'center',justifyContent:'center'}}>
           <Button transparent

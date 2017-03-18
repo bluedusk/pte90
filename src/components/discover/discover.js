@@ -34,7 +34,7 @@ class Discover extends React.Component {
     }
     else{
       // display all user items
-      Actions.userItems({header:"机经分享",user:{name:'user'}});
+      Actions.userItems({header:"机经分享",user:{name:'user',id:'user'}});
       // this.props.fetchUserItems('user');
     }
     // this.props.fetchCurrItem(id);

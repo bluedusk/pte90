@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import { fetchItems } from '../../actions/itemsAction';
 import { bindActionCreators } from 'redux';
 import { InteractionManager } from 'react-native';
+import TestedBtn from '../common/testedBtn';
 
 import styles from '../../styles/itemsMainStyle';
 
@@ -36,6 +37,10 @@ class ReadAloud extends React.Component {
     this.setState({array: response.array, loading: response.loading})
   }
 
+  onTestedBtnPress(){
+
+  }
+
   renderList(){
     //console.log(this.props);
     const { array } = this.state;
@@ -53,14 +58,19 @@ class ReadAloud extends React.Component {
           </CardItem>
           <CardItem style={{paddingVertical: 0}}>
             <Left>
-              <Button transparent>
-                <Icon active name="thumbs-up" />
+              {/* <Button transparent onPress={this.onTestedBtnPress.bind(this, item)}>
+                <Icon active={true} name="thumbs-up" />
                 <Text>  {item.tested} 考过</Text>
-              </Button>
+              </Button> */}
+              <TestedBtn
+                active={item.active}
+                tested={item.tested}
+                itemId={item.itemId}
+              />
             </Left>
             <Right>
               <Button transparent>
-                <Icon active name="thumbs-up" />
+                {/* <Icon active name="thumbs-up" /> */}
                 <Text> 讨论</Text>
               </Button>
             </Right>

@@ -56,6 +56,7 @@ class NewItem extends React.Component {
     item.itemType = this.props.itemType;
     item.contributor = this.state.user.name; //TODO user name for now
     item.tested = 1;
+    item.official = false;
     console.log(item);
     this.props.newItem(item);
   }

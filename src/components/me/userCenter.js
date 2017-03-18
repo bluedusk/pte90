@@ -61,7 +61,7 @@ class UserCenter extends Component {
       case 'items':
       console.log(this.props.user)
         // TODO hardcode user
-        Actions.userItems({header:'我的分享',user:{name:'dan'}});
+        Actions.userItems({header:'我的分享',user:{name:'dan',id:'0000'}});
         break;
       default:
     }

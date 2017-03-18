@@ -3,9 +3,11 @@ import {
   FETCH_ITEMS,
   FETCH_USERITEMS,
   FETCH_ITEMS_SUCCESS,
-  FETCH_ITEMS_FAIL
+  FETCH_ITEMS_FAIL,
+  TESTED_ITEM
 } from './types';
-import { TESTITEMS_URL } from './config';
+import { AsyncStorage } from 'react-native';
+import { TESTITEMS_URL, TESTEDITEM_URL } from './config';
 
 
 export const fetchItems = (type) => {
@@ -52,16 +54,18 @@ export const fetchItems = (type) => {
       type: FETCH_ITEMS
     });
     try {
-      const response = await fetch(`${TESTITEMS_URL}/${type}`);
+      let user = await AsyncStorage.getItem('@user:key');
+      // console.log(`${TESTITEMS_URL}/${type}?official=true&queryid=${JSON.parse(user).id}`);
+      const response = await fetch(`${TESTITEMS_URL}/${type}?official=true&queryid=${JSON.parse(user).id}`);
       const responseJson = await response.json()
-      //console.log(responseJson);
+      console.log(responseJson);
       dispatch({
         type: FETCH_ITEMS_SUCCESS,
         payload: responseJson
       });
 
     } catch (e) {
-      //console.log(e);
+      console.log(e);
       dispatch({
         type: FETCH_ITEMS_FAIL,
         payload: e
@@ -70,7 +74,7 @@ export const fetchItems = (type) => {
   };
 };
 
-export const fetchUserItems = (user) => {
+export const fetchUserItems = (contributor) => {
 
   return async (dispatch, getState) => {
     try {
@@ -78,8 +82,9 @@ export const fetchUserItems = (user) => {
       //   type: FETCH_ITEMS,
       //   payload: {},
       // });
-      console.log(`${TESTITEMS_URL}/?contributor=${user}`);
-      const response = await fetch(`${TESTITEMS_URL}/?contributor=${user}`);
+      let user = await AsyncStorage.getItem('@user:key');
+
+      const response = await fetch(`${TESTITEMS_URL}/?official=false&queryid=${JSON.parse(user).id}&contributor=${contributor}`);
       const responseJson = await response.json()
       //console.log(responseJson);
       dispatch({
@@ -114,6 +119,70 @@ export const delItem = (id) => {
       //console.log(responseJson);
       dispatch({
         type: DEL_ITEM,
+        payload: responseJson,
+      });
+
+    } catch (e) {
+      //console.log(e);
+    }
+  };
+};
+export const testedItem = (itemId) => {
+console.log(itemId);
+  return async (dispatch, getState) => {
+    try {
+      // dispatch({
+      //   type: FETCH_ITEMS,
+      //   payload: {},
+      // });
+      let user = await AsyncStorage.getItem('@user:key');
+      let item = {userId: JSON.parse(user).id, itemId: itemId};
+      const response = await fetch(`${TESTEDITEM_URL}`,
+        {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(item)
+        }
+      );
+      const responseJson = await response.json()
+      //console.log(responseJson);
+      dispatch({
+        type: TESTED_ITEM,
+        payload: responseJson,
+      });
+
+    } catch (e) {
+      //console.log(e);
+    }
+  };
+};
+export const unTestedItem = (itemId) => {
+
+  return async (dispatch, getState) => {
+    try {
+      // dispatch({
+      //   type: FETCH_ITEMS,
+      //   payload: {},
+      // });
+      let user = await AsyncStorage.getItem('@user:key');
+      let item = {userId: JSON.parse(user).id, itemId: itemId};
+      const response = await fetch(`${TESTEDITEM_URL}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(item)
+        }
+      );
+      const responseJson = await response.json()
+      //console.log(responseJson);
+      dispatch({
+        type: TESTED_ITEM,
         payload: responseJson,
       });
 
