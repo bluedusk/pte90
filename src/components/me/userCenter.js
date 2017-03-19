@@ -8,6 +8,7 @@ import { Container, Header, Title, Content, Button, Icon, ListItem, Badge, Left,
 import { Actions } from 'react-native-router-flux';
 import { fetchUser } from '../../actions/userAction';
 import { fetchPositions } from '../../actions/positionAction';
+import PTEFooter from '../common/pteFooter';
 
 import styles from '../../styles/styles';
 
@@ -255,6 +256,7 @@ class UserCenter extends Component {
           </ListItem> */}
 
         </Content>
+        <PTEFooter tab="4"/>
       </Container>
     );
   }

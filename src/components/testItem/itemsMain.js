@@ -5,6 +5,7 @@ import { Text, View, AsyncStorage } from 'react-native';
 import { Header, Container, Content, Card, CardItem, Icon, Left, Title, Body, Button, Right } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { fetchItems } from '../../actions/itemsAction';
+import PTEFooter from '../common/pteFooter';
 
 // import styles from '../../styles/itemsMainStyle';
 
@@ -270,7 +271,8 @@ class ItemsMain extends React.Component {
           {this.renderListening()}
         </Card>
       </Content>
-      </Container>
+      <PTEFooter tab="1"/>
+    </Container>
     );
   }
 }

@@ -81,7 +81,7 @@ class AppRoutes extends Component {
               <Scene key="userItems" component={UserItems} title="UserItems" />
             </Scene>
           </RouterWithRedux>
-          <PTEFooter />
+          {/* <PTEFooter /> */}
         </Container>
       // </StyleProvider>
     );

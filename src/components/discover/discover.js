@@ -6,6 +6,7 @@ import { Segment, List, ListItem, Header, Title, Button, Container, Content, Car
 import { Actions } from 'react-native-router-flux';
 import { fetchExps } from '../../actions/expAction';
 import { fetchUserItems } from '../../actions/itemsAction';
+import PTEFooter from '../common/pteFooter';
 
 import styles from '../../styles/styles';
 
@@ -73,6 +74,7 @@ class Discover extends React.Component {
             </CardItem>
           </Card>
         </Content>
+      <PTEFooter tab="2"/>
       </Container>
     );
   }

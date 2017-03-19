@@ -5,6 +5,7 @@ import { Text, Linking } from 'react-native';
 import { Segment, List, ListItem, Header, Title, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { fetchPositions } from '../../actions/positionAction'
+import PTEFooter from '../common/pteFooter';
 
 import styles from '../../styles/styles';
 
@@ -67,6 +68,7 @@ class Position extends React.Component {
             </CardItem>
           </Card>
         </Content>
+        <PTEFooter tab="3"/>
       </Container>
 
 

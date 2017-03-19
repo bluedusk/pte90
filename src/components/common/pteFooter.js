@@ -69,20 +69,20 @@ class PTEFooter extends Component {
     return (
            <Footer >
                <FooterTab>
-                 <Button active={this.state.tab1} onPress={() => this.toggleTab1()} >
-                   <Icon active={this.state.tab1} name="apps" />
+                 <Button active={this.props.tab == 1 ? true : false} onPress={() => this.toggleTab1()} >
+                   <Icon active={this.props.tab == 1 ? true : false} name="apps" />
                    <Text>机经</Text>
                  </Button>
-                 <Button active={this.state.tab2} onPress={() => this.toggleTab2()} >
-                   <Icon active={this.state.tab2} name="camera" />
+                 <Button active={this.props.tab == 2 ? true : false} onPress={() => this.toggleTab2()} >
+                   <Icon active={this.props.tab == 2 ? true : false} name="camera" />
                    <Text>发现</Text>
                  </Button>
-                 <Button active={this.state.tab3} onPress={() => this.toggleTab3()} >
-                   <Icon active={this.state.tab3} name="compass" />
+                 <Button active={this.props.tab == 3 ? true : false} onPress={() => this.toggleTab3()} >
+                   <Icon active={this.props.tab == 3 ? true : false} name="compass" />
                    <Text>考位</Text>
                  </Button>
-                 <Button active={this.state.tab4} onPress={() => this.toggleTab4()} >
-                   <Icon active={this.state.tab4} name="contact" />
+                 <Button active={this.props.tab == 4 ? true : false} onPress={() => this.toggleTab4()} >
+                   <Icon active={this.props.tab == 4 ? true : false} name="contact" />
                    <Text>我</Text>
                  </Button>
                </FooterTab>
