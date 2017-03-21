@@ -1,13 +1,15 @@
 import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { Image, View, TouchableHighlight } from 'react-native';
+import { Image, View, TouchableOpacity } from 'react-native';
 import { Picker, Item, Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 import styles from '../../styles/itemsMainStyle';
 
 const cardImage = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488300471032&di=c256f60a5ddad340223a6b5b27798b8b&imgtype=0&src=http%3A%2F%2Fnews.k618.cn%2Froll%2F201702%2FW020170227613160890035.png";
+
+
 class DIAlbum extends React.Component {
 
   constructor(props) {
@@ -36,12 +38,13 @@ class DIAlbum extends React.Component {
 //     const filterArray = _.filter(array, function(o) { return o.imageType === this.state.selectedIndex; });
 //     this.setState({selectedItems:filterArray});
 //   }
-  onPressButton(){
-    Actions['di']();
+  onPressButton(item, filterArray){
+    Actions['di']({item:item,filterArray:filterArray});
   }
 
   renderList(){
     const { array } = this.props.itemList;
+    console.log(array);
     if(!array || array.length == 0){
       return <Text style={{alignSelf:"flex-start"}}>loading...</Text>
     }
@@ -52,19 +55,15 @@ class DIAlbum extends React.Component {
     let res = filterArray.map(item =>{
       const imageSrouce = item.imageSrc;
       return(
-        <TouchableHighlight key={item.itemId} onPress={this.onPressButton}
-          style={{borderColor:"red", borderWidth:1,height: 100, marginBottom:10}}>
-          <Image
+        <TouchableOpacity key={item.itemId} onPress={()=>this.onPressButton(item,filterArray)} style={{height:170}}>
+          <View style={styles.itemContainer}>
+            <Image
 
-            source={{uri:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488376258536&di=cdfe93e717a22e6ef941b98905553943&imgtype=0&src=http%3A%2F%2Fww1.sinaimg.cn%2Fthumb180%2F005Y2C0vjw1eul1y6maruj30hs0hsgnx.jpg"}}
-            style={{
-              resizeMode: 'cover',
-              width: 100,
-              height: 100,
-              // padding: 20,
-            }}
-          />
-        </TouchableHighlight>
+              source={{uri:item.imageSrc}}
+              style={styles.image}
+            />
+          </View>
+        </TouchableOpacity>
       );
     });
     //console.log(res);
@@ -81,7 +80,7 @@ class DIAlbum extends React.Component {
               </Button>
             </Left>
             <Body>
-              <Title>Retell Lecture</Title>
+              <Title>Describe Image</Title>
             </Body>
             <Right>
 
@@ -99,8 +98,8 @@ class DIAlbum extends React.Component {
 
              </Right>
         </Header>
-        <Content padder>
-          <View style={{flexDirection: "row", flexWrap: "wrap", justifyContent: "space-around"}} >
+        <Content>
+          <View style={{flexDirection: "row", flexWrap: "wrap", justifyContent: "flex-start", padding:10}} >
             { this.renderList() }
 
           </View>

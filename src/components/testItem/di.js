@@ -8,13 +8,14 @@ import { PagerBtnSet } from '../common/pagerBtnSet';
 
 import styles from '../../styles/itemsMainStyle';
 
-const cardImage = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488300471032&di=c256f60a5ddad340223a6b5b27798b8b&imgtype=0&src=http%3A%2F%2Fnews.k618.cn%2Froll%2F201702%2FW020170227613160890035.png";
+// Image.getSize(myUri, (width, height) => {this.setState({width, height});
+
 class DI extends React.Component {
 
   constructor(props){
     super(props);
     this.state = {
-      itemIndex: 0,
+      itemIndex: -1,
       arrayLength:-1
     }
   }
@@ -22,13 +23,13 @@ class DI extends React.Component {
   componentWillMount(){
     // console.log(this.props.id);
     // console.log(this.props.itemList.array.length);
-    // const { array } = this.props.itemList;
-    // const index = _.findIndex(array, (o) => o.itemId == this.props.id )
-    // this.setState({itemIndex:index, arrayLength:array.length});
+    const { item, filterArray } = this.props;
+    const index = _.findIndex(filterArray, (o) => o.itemId == item.itemId )
+    this.setState({itemIndex:index, arrayLength:filterArray.length});
   }
 
   renderList(){
-    const { array } = this.props.itemList;
+    const array  = this.props.filterArray;
     //console.log(array);
     if(!array || array.length === 0){
       return <Text>loading...</Text>
@@ -44,8 +45,15 @@ class DI extends React.Component {
           <Right>
           </Right>
         </CardItem>
-        <CardItem cardBody>
-          <Image style={{ resizeMode: 'cover', width: null, height: 200, flex: 1 }} source={{uri:cardImage}} />
+        <CardItem cardBody style={{flex:1}}>
+          <Image style={{ resizeMode: 'contain', flex: 1 }}
+            // source={{uri:array[this.state.itemIndex].imageSrc}}
+            source={[
+  {uri: 'https://facebook.github.io/react/img/logo_small.png', width: 38, height: 38},
+  {uri: 'https://facebook.github.io/react/img/logo_small_2x.png', width: 76, height: 76},
+  {uri: 'https://facebook.github.io/react/img/logo_og.png', width: 400, height: 400}
+]}
+          />
         </CardItem>
         <CardItem style={{paddingVertical: 0}}>
           <Left>
@@ -76,10 +84,10 @@ class DI extends React.Component {
               </Button>
             </Left>
             <Body>
-              <Title>Retell Lecture</Title>
+              <Title>Describe Image</Title>
             </Body>
             <Right>
-              <Button transparent onPress={()=>{Actions['newItem']()}}><Text>Add</Text></Button>
+              {/* <Button transparent onPress={()=>{Actions['newItem']()}}><Text>Add</Text></Button> */}
             </Right>
         </Header>
         <Content padder>

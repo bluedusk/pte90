@@ -20,7 +20,7 @@ export const fetchItems = (type) => {
       Actions['retellLecture']({itemType:type,header:'Retell Leture'});
       break;
     case 'di':
-      Actions['diAlbum']();
+      Actions['diAlbum']({itemType:type,header:'Describe Image'});
       break;
     case 'asq':
       Actions['asqList']({itemType:type,header:'ASQ'});
@@ -55,7 +55,7 @@ export const fetchItems = (type) => {
     });
     try {
       let user = await AsyncStorage.getItem('@user:key');
-      // console.log(`${TESTITEMS_URL}/${type}?official=true&queryid=${JSON.parse(user).id}`);
+      console.log(`${TESTITEMS_URL}/${type}?official=true&queryid=${JSON.parse(user).id}`);
       const response = await fetch(`${TESTITEMS_URL}/${type}?official=true&queryid=${JSON.parse(user).id}`);
       const responseJson = await response.json()
       console.log(responseJson);
