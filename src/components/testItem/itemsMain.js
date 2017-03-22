@@ -28,7 +28,7 @@ class ItemsMain extends React.Component {
   _loadInitialState = async () => {
    try {
      // TODO
-     let user = {name:"dan",id:"0000"};
+     let user = {name:"dan",id:"58d13a531163837a9f9debeb"};
 
      let promise = await AsyncStorage.setItem('@user:key', JSON.stringify(user));
 

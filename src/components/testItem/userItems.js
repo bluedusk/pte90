@@ -6,6 +6,7 @@ import { Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, 
 import { Actions } from 'react-native-router-flux';
 import { iMap } from '../../config/config';
 import { fetchUserItems } from '../../actions/itemsAction';
+import moment from 'moment';
 
 import styles from '../../styles/itemsMainStyle';
 import { delItem } from '../../actions/itemsAction';
@@ -110,13 +111,13 @@ class UserItems extends React.Component {
     }
   }
   renderRow(item){
-    console.log("render page");
+    // console.log(moment(item.updatedAt).fromNow());
     return(
       <Card style={styles.mb}>
         <CardItem content bordered>
           <Body>
             <Text>{iMap[item.itemType].long}</Text>
-            <Text style={{color:'pink',fontSize:10}}>by {item.contributor}, 1天前</Text>
+            <Text style={{color:'pink',fontSize:10}}>by {item.contributor.name}, {moment(item.updatedAt).fromNow()}</Text>
           </Body>
         </CardItem>
         <CardItem  bordered>
@@ -144,7 +145,7 @@ class UserItems extends React.Component {
 
   renderList(){
     /// hello
-    // console.log(this.props.itemList.array);
+    //console.log(this.props.itemList.array);
     const { array } = this.state;
     if(!array || array.length == 0){
       return <Text>loading...</Text>
@@ -155,7 +156,7 @@ class UserItems extends React.Component {
           <CardItem content bordered>
             <Body>
               <Text>{iMap[item.itemType].long}</Text>
-              <Text style={{color:'pink',fontSize:10}}>by {item.contributor}, 1天前</Text>
+              <Text style={{color:'pink',fontSize:10}}>by {item.contributor.name}, 1天前</Text>
             </Body>
           </CardItem>
           <CardItem content bordered>
