@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Platform, Text } from 'react-native';
+import { Platform, Text, AsyncStorage } from 'react-native';
 // import { actions } from 'react-native-navigation-redux-helpers';
 import { Container, Header, Title, Content, Button, Icon, ListItem, Badge, Left, Right, Body, Switch, Radio, Picker, Separator } from 'native-base';
 import { Actions } from 'react-native-router-flux';
@@ -24,15 +24,18 @@ class UserCenter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedItem: undefined,
-      selected1: 'key1',
+      user:{},
       results: {
         items: [],
       },
     };
   }
-  componentWillUnmount(){
+  async componentWillMount() {
     console.log("user center componentWillUnmount");
+
+    var value = await AsyncStorage.getItem('@user:key');
+    this.setState({user:JSON.parse(value)});
+    console.log(this.state.user);
   // query user info
   //  this.props.fetchUser();
   }
@@ -62,7 +65,7 @@ class UserCenter extends Component {
       case 'items':
       console.log(this.props.user)
         // TODO hardcode user
-        Actions.userItems({header:'我的分享',user:{name:'dan',id:'0000'}});
+        Actions.userItems({header:'我的分享',user:this.state.user});
         break;
       default:
     }

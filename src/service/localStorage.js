@@ -4,7 +4,7 @@ import { AsyncStorage } from 'react-native';
 export const _getUser = async () => {
  try {
    let value = await AsyncStorage.getItem('@user:key');
-   let result =  {name:JSON.parse(value).name};
+   let result =  JSON.parse(value);
    return result;
  }catch (error){
    console.log(error)

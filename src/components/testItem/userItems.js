@@ -40,7 +40,7 @@ class UserItems extends React.Component {
 
     var value = await AsyncStorage.getItem('@user:key');
     this.setState({user:JSON.parse(value)});
-    console.log("user: "+this.state.user.name);
+    console.log(this.state.user);
     // take props.user, display all/current user items
     // Discover -> user = user -> display all user items;
     // Me -> user = currentUser -> display current user items
@@ -97,7 +97,8 @@ class UserItems extends React.Component {
 
   // only show Delete button to current user
   renderDeleteBtn(item){
-    if(item.contributor == this.state.user.id){
+    console.log(item);
+    if(item.contributor._id == this.state.user.id){
       return (
         <Body style={{alignItems:'center',justifyContent:'center'}}>
           <Button transparent

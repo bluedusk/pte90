@@ -6,6 +6,8 @@ import { Segment, Container, Header, Title, Spinner, Item, Label, Input, Form, T
 import { Actions } from 'react-native-router-flux';
 import { newItem } from '../../actions/newItemAction';
 import { _getUser } from '../../service/localStorage';
+import { iMap } from '../../config/config';
+
 import styles from '../../styles/itemsMainStyle';
 
 const deviceWidth = Dimensions.get('window').width;
@@ -33,8 +35,9 @@ class NewItem extends React.Component {
     console.log(123456);
     console.log(nextProps.newItemData);
     // add item success, then go to useritems page
-    if (nextProps.newItemData.success) {console.log(123);
-      Actions['userItems']({user:{name:'dan'},header:"我的分享"});
+    if (nextProps.newItemData.success) {
+      this.setState({process:0});
+      Actions['userItems']({user:this.state.user,header:"我的分享"});
     }
   }
 
@@ -54,7 +57,7 @@ class NewItem extends React.Component {
     let item = {};
     item.itemText = this.state.bodyText;
     item.itemType = this.props.itemType;
-    item.contributor = this.state.user.name; //TODO user name for now
+    item.contributor = this.state.user.id;
     item.tested = 1;
     item.official = false;
     console.log(item);
@@ -72,7 +75,7 @@ class NewItem extends React.Component {
               </Button>
             </Left>
             <Body>
-              <Title>{this.props.header}</Title>
+              <Title>{iMap[this.props.itemType].long}</Title>
             </Body>
             <Right>
               {this.rightBtn()}
