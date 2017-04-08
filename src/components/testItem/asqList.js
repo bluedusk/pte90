@@ -16,11 +16,12 @@ class ASQList extends React.Component {
   }
 
   renderListView(){
-    const datas = ["item1","item2","item3","item4","item5","item1","item1","item1","item1","item1","item1","item1","item1","item1","item1","item1","item1","item1","item1","item1","item1","item22"];
-    const chunkSize = 3;
+    const { array } = this.props.itemList;
+    const datas = array;
+    // const datas = ["item1","item2","item3","item4","item5","item1","item1","item1","item1","item1","item1","item1","item1","item1","item1","item1","item1","item1","item1","item1","item1","item22"];
+    const chunkSize = 15;
     const result = _.chunk(datas, chunkSize);
     //console.log(this.props);
-    const { array } = this.props.itemList;
     if(!array || array.length == 0){
       return <Text>loading...</Text>
     }

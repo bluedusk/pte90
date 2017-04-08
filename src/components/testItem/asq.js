@@ -15,14 +15,14 @@ class ASQ extends React.Component {
           <Card style={styles.mb} >
             <CardItem content bordered>
               <Body>
-                <Text>{data}</Text>
+                <Text>{data.itemText}</Text>
               </Body>
             </CardItem>
             <CardItem style={{paddingVertical: 0}}>
               <Left>
                 <Button transparent>
                   <Icon active name="thumbs-up" />
-                  <Text>  {data} 考过</Text>
+                  <Text>  {data.tested} 考过</Text>
                 </Button>
               </Left>
             </CardItem>
