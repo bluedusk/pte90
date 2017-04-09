@@ -14,7 +14,7 @@ export const fetchPositions = (type) => {
       //   type: FETCH_ITEMS,
       //   payload: {},
       // });
-      const response = await fetch('POSITIONS_URL');
+      const response = await fetch(POSITIONS_URL);
       const responseJson = await response.json()
       //console.log(responseJson);
       dispatch({
@@ -51,7 +51,7 @@ export const positionNew = () => {
   };
 };
 
-export const delPosition = () => {
+export const delPosition = (id) => {
 
   return async (dispatch, getState) => {
     try {
@@ -59,7 +59,15 @@ export const delPosition = () => {
       //   type: FETCH_ITEMS,
       //   payload: {},
       // });
-      const response = await fetch('http://rap.taobao.org/mockjsdata/14377/positions');
+      const response = await fetch(`${POSITIONS_URL}/${id}`,
+        {
+          method: 'DELETE',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          }
+        }
+      );
       const responseJson = await response.json()
       //console.log(responseJson);
       dispatch({

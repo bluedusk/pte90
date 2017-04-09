@@ -85,8 +85,12 @@ class UserItems extends React.Component {
   onDeleteConform(id){
     console.log(id);
     // remove item from listview
+    // console.log(this.state.array);
     let array = this.state.array;
     let result = _.remove(array,function(item){ return item.itemId == id});
+    // why this.state.array changed ???
+    // console.log(this.state.array);
+
     this.createDataSource(this.state.array);
 
     // call remove action
