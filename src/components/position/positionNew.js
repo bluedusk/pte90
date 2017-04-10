@@ -17,7 +17,7 @@ class PositionNew extends React.Component {
     this.state = {
       bodyText: '',
       request: {},
-      transferType: 0,
+      transferType: 1,
       btnStatus: [true,false,false]
     }
 
@@ -38,9 +38,13 @@ class PositionNew extends React.Component {
     this.setState({process:1});
     let item = {};
     item.text = this.state.bodyText;
-    item.type = this.props.transferType;
-    //console.log(item);
+    item.type = this.state.transferType;
+    console.log(this.props.user);
+    item._creator = this.props.user.id;
+    console.log(item);
+    // add new position information, if success, call fetchPosition & go back
     this.props.positionNew(item);
+    Actions.pop();
   }
 
   onPressButton (id) {

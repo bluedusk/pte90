@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { AlertIOS } from 'react-native';
-import { delPosition } from '../../actions/positionAction';
+import { delPosition, fetchPositions } from '../../actions/positionAction';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
@@ -20,6 +20,7 @@ class PositionTransfer extends React.Component {
   }
 
   componentWillReceiveProps(props){
+    console.log(props);
     this.setState({array:props.positions.array})
   }
 
@@ -127,7 +128,7 @@ class PositionTransfer extends React.Component {
               <Title>考位转让</Title>
             </Body>
             <Right>
-              <Button transparent onPress={()=>{Actions['positionNew']()}}><Text>Add</Text></Button>
+              <Button transparent onPress={()=>{Actions['positionNew']({user:this.props.user})}}><Text>Add</Text></Button>
             </Right>
         </Header>
         <Content padder>
@@ -142,11 +143,11 @@ class PositionTransfer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { positions : state.positions };
+  return { positions : state.positions, user : state.user.user };
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({delPosition}, dispatch);
+  return bindActionCreators({delPosition,fetchPositions}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PositionTransfer);

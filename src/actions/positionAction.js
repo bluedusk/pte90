@@ -1,7 +1,8 @@
 import { Actions } from 'react-native-router-flux';
 import {
   FETCH_POSITIONS,
-  DEL_POSITION
+  DEL_POSITION,
+  NEW_POSITION
 } from './types';
 import { POSITIONS_URL } from './config';
 
@@ -44,12 +45,23 @@ export const positionNew = (item) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(item)
-      });      const responseJson = await response.json()
+      });
+      const responseJson = await response.json()
+      //console.log(responseJson);
+
+      const response1 = await fetch(POSITIONS_URL);
+      const responseJson1 = await response1.json()
       //console.log(responseJson);
       dispatch({
         type: FETCH_POSITIONS,
-        payload: responseJson,
+        payload: responseJson1,
       });
+
+
+      // dispatch({
+      //   type: NEW_POSITION,
+      //   payload: responseJson,
+      // });
 
     } catch (e) {
       //console.log(e);
