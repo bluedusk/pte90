@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { AlertIOS } from 'react-native';
+import { delPosition } from '../../actions/positionAction';
+import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
 import styles from '../../styles/itemsMainStyle';
@@ -43,7 +45,7 @@ class PositionTransfer extends React.Component {
     //console.log(result);
     this.setState({array:array});
     // call remove action
-    // this.props.delItem(id);
+    this.props.delPosition(id);
 
   }
 
@@ -143,4 +145,8 @@ const mapStateToProps = (state) => {
   return { positions : state.positions };
 }
 
-export default connect(mapStateToProps)(PositionTransfer);
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({delPosition}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PositionTransfer);

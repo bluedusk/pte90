@@ -29,7 +29,7 @@ export const fetchPositions = (type) => {
   };
 };
 
-export const positionNew = () => {
+export const positionNew = (item) => {
 
   return async (dispatch, getState) => {
     try {
@@ -37,8 +37,14 @@ export const positionNew = () => {
       //   type: FETCH_ITEMS,
       //   payload: {},
       // });
-      const response = await fetch('http://rap.taobao.org/mockjsdata/14377/positions');
-      const responseJson = await response.json()
+      const response = await fetch(POSITIONS_URL, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(item)
+      });      const responseJson = await response.json()
       //console.log(responseJson);
       dispatch({
         type: FETCH_POSITIONS,

@@ -5,6 +5,7 @@ import { Text, View, AsyncStorage } from 'react-native';
 import { Header, Container, Content, Card, CardItem, Icon, Left, Title, Body, Button, Right } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { fetchItems } from '../../actions/itemsAction';
+import { userLogin } from '../../actions/userAction';
 import PTEFooter from '../common/pteFooter';
 
 // import styles from '../../styles/itemsMainStyle';
@@ -28,10 +29,11 @@ class ItemsMain extends React.Component {
   _loadInitialState = async () => {
    try {
      // TODO
-     let user = {name:"dan",id:"58d13a531163837a9f9debeb"};
-
-     let promise = await AsyncStorage.setItem('@user:key', JSON.stringify(user));
-
+    //  let user = {name:"dan",id:"58d13a531163837a9f9debeb"};
+     //
+    //  let promise = await AsyncStorage.setItem('@user:key', JSON.stringify(user));
+     //
+     this.props.userLogin();
      var value = await AsyncStorage.getItem('@user:key');
      console.dir(value.toString());
 
@@ -279,7 +281,8 @@ class ItemsMain extends React.Component {
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
-    fetchItems:fetchItems
+    fetchItems:fetchItems,
+    userLogin:userLogin
   }, dispatch);
 }
 

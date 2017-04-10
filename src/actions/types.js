@@ -12,3 +12,4 @@ export const FETCH_ITEMS_SUCCESS = 'FETCH_ITEMS_SUCCESS';
 export const FETCH_ITEMS_FAIL = 'FETCH_ITEMS_FAIL';
 export const DEL_ITEM = 'DEL_ITEM';
 export const TESTED_ITEM = 'TESTED_ITEM';
+export const USER_LOGIN = 'USER_LOGIN';
