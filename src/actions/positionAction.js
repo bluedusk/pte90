@@ -7,7 +7,7 @@ import {
 import { POSITIONS_URL } from './config';
 
 
-export const fetchPositions = (type) => {
+export const fetchPositions = (user) => {
 
   return async (dispatch, getState) => {
     try {
@@ -15,7 +15,9 @@ export const fetchPositions = (type) => {
       //   type: FETCH_ITEMS,
       //   payload: {},
       // });
-      const response = await fetch(POSITIONS_URL);
+      let userid = user || '';
+      console.log(`${POSITIONS_URL}?userid=${userid}`)
+      const response = await fetch(`${POSITIONS_URL}?userid=${userid}`);
       const responseJson = await response.json()
       //console.log(responseJson);
       dispatch({
@@ -49,7 +51,7 @@ export const positionNew = (item) => {
       const responseJson = await response.json()
       //console.log(responseJson);
 
-      const response1 = await fetch(POSITIONS_URL);
+      const response1 = await fetch(`${POSITIONS_URL}?userid=`);
       const responseJson1 = await response1.json()
       //console.log(responseJson);
       dispatch({

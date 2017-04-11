@@ -37,7 +37,7 @@ class NewItem extends React.Component {
     // add item success, then go to useritems page
     if (nextProps.newItemData.success) {
       this.setState({process:0});
-      Actions['userItems']({user:this.state.user,header:"我的分享"});
+      Actions['userItems']({user:this.state.user,header:"我的分享",popNum:2});
     }
   }
 

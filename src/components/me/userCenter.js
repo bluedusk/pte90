@@ -60,7 +60,7 @@ class UserCenter extends Component {
     switch (type) {
       case 'position':
         Actions.positionTransfer();
-        this.props.fetchPositions('userid');
+        this.props.fetchPositions(this.state.user.id);
         break;
       case 'items':
       console.log(this.props.user)

@@ -6,6 +6,7 @@ import { AlertIOS } from 'react-native';
 import { delPosition, fetchPositions } from '../../actions/positionAction';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
+import moment from 'moment';
 
 import styles from '../../styles/itemsMainStyle';
 
@@ -50,6 +51,21 @@ class PositionTransfer extends React.Component {
 
   }
 
+  // only show Delete button to current user
+  renderDeleteBtn(item){
+    console.log(item);
+    if(item._creator._id == this.props.user.id){
+      return (
+        // <Body style={{alignItems:'center',justifyContent:'center'}}>
+          <Button transparent onPress={()=>this.onDeleteItem(item._id)}>
+            <Text>删除</Text>
+          </Button>
+        // </Body>
+      )
+    }else{
+      return <Text> </Text>;
+    }
+  }
   renderList(){
     //console.log(this.props);
     const { array } = this.state;
@@ -82,16 +98,17 @@ class PositionTransfer extends React.Component {
               <Text>{item.text}</Text>
             </Body>
           </CardItem>
-          <CardItem style={{paddingVertical: 0, marginVertical:0}}>
-            <Left>
-              <Button transparent onPress={()=>this.onDeleteItem(item._id)}>
+          <CardItem style={{height:45,paddingVertical: 0, marginVertical:0}}>
+            <Left style={{flex:1}}>
+              {/* <Button transparent onPress={()=>this.onDeleteItem(item._id)}>
                 <Text>删除</Text>
-              </Button>
+              </Button> */}
+              { this.renderDeleteBtn(item) }
             </Left>
-            <Body>
-            </Body>
-            <Right>
-              <Text style={{fontSize:10,color:'grey'}}>{type} - 1天前</Text>
+            {/* <Body>
+            </Body> */}
+            <Right style={{flex:5}}>
+              <Text style={{fontSize:10,color:'grey'}}>{type} - {moment(item.updatedAt).fromNow()} by {item._creator.name}</Text>
             </Right>
           </CardItem>
           {/* <CardItem style={{paddingVertical: 0}}>

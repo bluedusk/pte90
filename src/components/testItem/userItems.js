@@ -101,7 +101,7 @@ class UserItems extends React.Component {
 
   // only show Delete button to current user
   renderDeleteBtn(item){
-    console.log(item);
+    // console.log(item);
     if(item.contributor._id == this.state.user.id){
       return (
         <Body style={{alignItems:'center',justifyContent:'center'}}>
@@ -200,11 +200,13 @@ class UserItems extends React.Component {
   }
 
   render() {
+    let popNum = !(this.props.popNum)?'':{popNum: this.props.popNum};
+    // console.log(foo);
     return (
       <Container>
         <Header>
             <Left>
-              <Button transparent onPress={() => Actions.pop()}>
+              <Button transparent onPress={() => Actions.pop(popNum)}>
                 <Icon name="arrow-back" />
               </Button>
             </Left>
