@@ -36,7 +36,7 @@ export const userLogin = () => {
   return async (dispatch) => {
     try {
       // TODO: WeChat login
-      let user = {name:"pte90",id:"58d13a531163837a9f9debeb"};
+      let user = {name:"pte90",id:"58d13a531163837a9f9debeb"，points:100};
       let promise = await AsyncStorage.setItem('@user:key', JSON.stringify(user));
       //var value = await AsyncStorage.getItem('@user:key');
       // const response = await fetch(FETCHUSER_URL);

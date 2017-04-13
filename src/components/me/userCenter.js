@@ -63,9 +63,12 @@ class UserCenter extends Component {
         this.props.fetchPositions(this.state.user.id);
         break;
       case 'items':
-      console.log(this.props.user)
         // TODO hardcode user
         Actions.userItems({header:'我的分享',user:this.state.user});
+        break;
+      case 'points':
+        // TODO hardcode user
+        Actions.pointsRule({user:this.state.user});
         break;
       default:
     }
@@ -98,7 +101,7 @@ class UserCenter extends Component {
               <Text>{this.props.user.info.points}</Text>
             </Right>
           </ListItem>
-          <ListItem icon button onPress={()=>{}}>
+          <ListItem icon button onPress={this.onItemPress.bind(this,'points')}>
             <Left>
               <Button style={{ backgroundColor: '#5855D6' }}>
                 <Icon active name="moon" />
@@ -150,7 +153,15 @@ class UserCenter extends Component {
               <Switch value={false} onTintColor="#50B948" />
             </Right>
           </ListItem>
+          <Separator bordered />
 
+
+              <Button full bordered danger style={{marginLeft:20,marginRight:20,marginTop:10}}>
+                  <Text>退出登录</Text>
+              </Button>
+              <Button full bordered danger style={{marginLeft:20,marginRight:20,marginTop:10}}>
+                  <Text>分享</Text>
+              </Button>
 
           {/* <ListItem icon last>
             <Left>

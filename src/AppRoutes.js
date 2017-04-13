@@ -32,6 +32,7 @@ import ExpList from './components/discover/experience';
 import ExpDetail from './components/discover/expDetail';
 import ExpNew from './components/discover/expNew';
 import UserItems from './components/testItem/userItems';
+import PointsRule from './components/me/pointsRule';
 
 
 // import ItemsMain from '.././js/components/Header/1';
@@ -79,6 +80,7 @@ class AppRoutes extends Component {
               <Scene key="expDetail" component={ExpDetail} title="ExpDetail" />
               <Scene key="expNew" component={ExpNew} title="ExpNew" />
               <Scene key="userItems" component={UserItems} title="UserItems" />
+              <Scene key="pointsRule" component={PointsRule} title="PointsRule" />
             </Scene>
           </RouterWithRedux>
           {/* <PTEFooter /> */}
