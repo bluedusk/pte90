@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { View, Dimensions, TextInput } from 'react-native';
-import { Segment, Container, Header, Title, Spinner, Item, Label, Input, Form, Text, Button, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
+import { Toast, Segment, Container, Header, Title, Spinner, Item, Label, Input, Form, Text, Button, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { newItem } from '../../actions/newItemAction';
 import { _getUser } from '../../service/localStorage';
@@ -55,6 +55,14 @@ class NewItem extends React.Component {
   onSubmitHandler(){
     this.setState({process:1});
     let item = {};
+    console.log(Toast);
+    if (this.state.bodyText.trim().length == 0) {
+      return Toast.show({
+              text: 'Wrong password!',
+              position: 'bottom',
+              buttonText: 'Okay'
+      });
+    }
     item.itemText = this.state.bodyText;
     item.itemType = this.props.itemType;
     item.contributor = this.state.user.id;
@@ -96,7 +104,11 @@ class NewItem extends React.Component {
           </Form>
         </Card>
         <Segment>
-            <Button first><Text>原文</Text></Button>
+            <Button first onPress={()=> Toast.show({
+              text: 'Wrong password!',
+              position: 'bottom',
+              buttonText: 'Okay'
+            })}><Text>原文</Text></Button>
             <Button last active><Text>答案</Text></Button>
         </Segment>
           <Text numberOfLines={40}>

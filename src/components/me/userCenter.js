@@ -98,7 +98,7 @@ class UserCenter extends Component {
               <Text>我的积分</Text>
             </Body>
             <Right>
-              <Text>{this.props.user.info.points}</Text>
+              <Text>{this.props.user.user.points}</Text>
             </Right>
           </ListItem>
           <ListItem icon button onPress={this.onItemPress.bind(this,'points')}>
@@ -153,15 +153,25 @@ class UserCenter extends Component {
               <Switch value={false} onTintColor="#50B948" />
             </Right>
           </ListItem>
-          <Separator bordered />
+          <ListItem icon button onPress={this.onItemPress.bind(this,'quit')}>
+            <Left>
+              <Button style={{ backgroundColor: '#FF9501' }}>
+                <Icon active name="plane" />
+              </Button>
+            </Left>
+            <Body>
+              <Text style={{color:'red'}}>退出登录</Text>
+            </Body>
+            <Right>
+              {(Platform.OS === 'ios') && <Icon active name="arrow-forward" />}
+            </Right>
+          </ListItem>
 
-
+{/*
               <Button full bordered danger style={{marginLeft:20,marginRight:20,marginTop:10}}>
                   <Text>退出登录</Text>
-              </Button>
-              <Button full bordered danger style={{marginLeft:20,marginRight:20,marginTop:10}}>
-                  <Text>分享</Text>
-              </Button>
+              </Button> */}
+
 
           {/* <ListItem icon last>
             <Left>
