@@ -47,12 +47,12 @@ class DI extends React.Component {
         </CardItem>
         <CardItem cardBody style={{flex:1}}>
           <Image style={{ resizeMode: 'contain', flex: 1 }}
-            // source={{uri:array[this.state.itemIndex].imageSrc}}
-            source={[
-  {uri: 'https://facebook.github.io/react/img/logo_small.png', width: 38, height: 38},
-  {uri: 'https://facebook.github.io/react/img/logo_small_2x.png', width: 76, height: 76},
-  {uri: 'https://facebook.github.io/react/img/logo_og.png', width: 400, height: 400}
-]}
+              source={{uri:array[this.state.itemIndex].imageSrc}}
+//             source={[
+//   {uri: 'https://facebook.github.io/react/img/logo_small.png', width: 38, height: 38},
+//   {uri: 'https://facebook.github.io/react/img/logo_small_2x.png', width: 76, height: 76},
+//   {uri: 'https://facebook.github.io/react/img/logo_og.png', width: 400, height: 400}
+// ]}
           />
         </CardItem>
         <CardItem style={{paddingVertical: 0}}>

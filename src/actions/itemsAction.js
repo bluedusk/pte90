@@ -28,8 +28,8 @@ export const fetchItems = (type) => {
     case 'rs':
       Actions['rs']();
       break;
-    case 'fib':
-      Actions['itemList']({header:'FIB'});
+    case 'rfib':
+      Actions['itemList']({itemType:type,header:'FIB'});
       break;
     case 'rsc':
       Actions['itemListContent']({header:'Single Choice'});
@@ -38,7 +38,7 @@ export const fetchItems = (type) => {
       Actions['itemListContent']({header:'Multi Choice'});
       break;
     case 'reorder':
-      Actions['itemList']({header:'Reorder'});
+      Actions['itemList']({itemType:type,header:'Reorder'});
       break;
     case 'swt':
       Actions['itemList']({header:'SWT'});

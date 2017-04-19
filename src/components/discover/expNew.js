@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { View, Dimensions, TextInput, Keyboard, TouchableWithoutFeedback } from 'react-native';
-import { Picker, Segment, Container, Header, Title, Spinner, Item, Label, Input, Form, Text, Button, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
+import { Toast, Picker, Segment, Container, Header, Title, Spinner, Item, Label, Input, Form, Text, Button, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { expNew } from '../../actions/positionAction';
 import styles from '../../styles/itemsMainStyle';
@@ -36,6 +36,16 @@ class ExpNew extends React.Component {
   }
 
   onSubmitHandler(){
+    if (this.state.bodyText.trim().length < 10) {
+       Toast.show({
+              text: '亲，内容太短啦。',
+              position: 'bottom',
+              buttonText: '[确定]',
+              type:'danger',
+              duration:5000
+      });
+      return;
+    }
     this.setState({process:1});
     let item = {};
     item.text = this.state.bodyText;

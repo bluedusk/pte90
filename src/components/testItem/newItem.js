@@ -21,7 +21,9 @@ class NewItem extends React.Component {
       bodyText: '',
       process: 0,
       request: {},
-      user:{}
+      user:{},
+      showToast: false
+
     }
 
   }
@@ -53,16 +55,19 @@ class NewItem extends React.Component {
   }
 
   onSubmitHandler(){
-    this.setState({process:1});
     let item = {};
     console.log(Toast);
-    if (this.state.bodyText.trim().length == 0) {
-      return Toast.show({
-              text: 'Wrong password!',
+    if (this.state.bodyText.trim().length < 10) {
+       Toast.show({
+              text: '亲，内容太短啦。',
               position: 'bottom',
-              buttonText: 'Okay'
+              buttonText: '[确定]',
+              type:'danger',
+              duration:5000
       });
+      return;
     }
+    this.setState({process:1});
     item.itemText = this.state.bodyText;
     item.itemType = this.props.itemType;
     item.contributor = this.state.user.id;
@@ -106,7 +111,7 @@ class NewItem extends React.Component {
         <Segment>
             <Button first onPress={()=> Toast.show({
               text: 'Wrong password!',
-              position: 'bottom',
+              position: 'center',
               buttonText: 'Okay'
             })}><Text>原文</Text></Button>
             <Button last active><Text>答案</Text></Button>

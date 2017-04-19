@@ -136,7 +136,7 @@ class ItemsMain extends React.Component {
             <Icon name="arrow-forward" />
           </Right>
         </CardItem>
-        <CardItem button onPress={()=>{this.props.fetchItems('fib')}}>
+        <CardItem button onPress={()=>{this.props.fetchItems('rfib')}}>
           <Text>Fill in blanks</Text>
           <Right>
             <Icon name="arrow-forward" />
