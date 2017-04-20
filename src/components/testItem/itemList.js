@@ -23,7 +23,7 @@ class ItemList extends React.Component {
       Actions.reorder({id:id,header:this.props.header});
     }
     else{
-      Actions.itemDetail({id:id,header:this.props.header});
+      Actions.itemDetail({id:id,header:this.props.header,itemType:this.props.itemType});
     }
     // this.props.fetchCurrItem(id);
   }

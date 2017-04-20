@@ -62,7 +62,7 @@ class EssayList extends React.Component {
               <Title>Essay</Title>
             </Body>
             <Right>
-              <Button transparent onPress={()=>{Actions['newItem']()}}><Text>Add</Text></Button>
+              <Button transparent onPress={()=>{Actions['newItem']({itemType:this.props.itemType})}}><Text>Add</Text></Button>
             </Right>
         </Header>
         <Content padder>

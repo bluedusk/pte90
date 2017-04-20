@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux';
 
 import styles from '../../styles/itemsMainStyle';
 
-// Common component for item list [ra,choice,wfd]
+// Common component for item list with content[ra,rs,choice,wfd]
 class ItemListContent extends React.Component {
 
   constructor(props){
@@ -32,11 +32,12 @@ class ItemListContent extends React.Component {
               <Text>{someText.text}</Text>
             </Body>
           </CardItem>
-          <CardItem content bordered>
+          {/* for answer or notes */}
+          {/* <CardItem content bordered>
             <Body>
               <Text>{someText.text}</Text>
             </Body>
-          </CardItem>
+          </CardItem> */}
           <CardItem style={{paddingVertical: 0}}>
             <Left>
               <Button transparent>
@@ -45,10 +46,10 @@ class ItemListContent extends React.Component {
               </Button>
             </Left>
             <Right>
-              <Button transparent>
+              {/* <Button transparent>
                 <Icon active name="thumbs-up" />
                 <Text> 讨论</Text>
-              </Button>
+              </Button> */}
             </Right>
           </CardItem>
         </Card>
@@ -71,7 +72,7 @@ class ItemListContent extends React.Component {
               <Title>{this.props.header}</Title>
             </Body>
             <Right>
-              <Button transparent onPress={()=>{Actions['newItem']({type:'ra'})}}><Text>Add</Text></Button>
+              <Button transparent onPress={()=>{Actions['newItem']({itemType:this.props.itemType})}}><Text>Add</Text></Button>
             </Right>
         </Header>
         <Content padder>

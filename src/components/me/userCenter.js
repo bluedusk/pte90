@@ -90,9 +90,7 @@ class UserCenter extends Component {
           {/* <Separator bordered noTopBorder /> */}
           <ListItem icon>
             <Left>
-              <Button style={{ backgroundColor: '#5855D6' }}>
-                <Icon active name="moon" />
-              </Button>
+                <Icon active name="body" style={{color:'#5855D6'}}/>
             </Left>
             <Body>
               <Text>我的积分</Text>
@@ -103,9 +101,7 @@ class UserCenter extends Component {
           </ListItem>
           <ListItem icon button onPress={this.onItemPress.bind(this,'points')}>
             <Left>
-              <Button style={{ backgroundColor: '#5855D6' }}>
-                <Icon active name="moon" />
-              </Button>
+                <Icon name="bulb" style={{color:'#5855D6'}}/>
             </Left>
             <Body>
               <Text>积分规则</Text>
@@ -116,9 +112,7 @@ class UserCenter extends Component {
           </ListItem>
           <ListItem icon button onPress={this.onItemPress.bind(this,'items')}>
             <Left>
-              <Button style={{ backgroundColor: '#5855D6' }}>
-                <Icon active name="moon" />
-              </Button>
+                <Icon name="copy" style={{color:'#5855D6'}}/>
             </Left>
             <Body>
               <Text>我的机经</Text>
@@ -129,9 +123,7 @@ class UserCenter extends Component {
           </ListItem>
           <ListItem icon button onPress={this.onItemPress.bind(this,'position')}>
             <Left>
-              <Button style={{ backgroundColor: '#5855D6' }}>
-                <Icon active name="moon" />
-              </Button>
+                <Icon name="moon" style={{color:'#5855D6'}}/>
             </Left>
             <Body>
               <Text>我的考位</Text>
@@ -142,9 +134,7 @@ class UserCenter extends Component {
           </ListItem>
           <ListItem icon>
             <Left>
-              <Button style={{ backgroundColor: '#FF9501' }}>
-                <Icon active name="plane" />
-              </Button>
+                <Icon name="plane" style={{color:'#5855D6'}}/>
             </Left>
             <Body>
               <Text>离线模式</Text>
@@ -155,9 +145,7 @@ class UserCenter extends Component {
           </ListItem>
           <ListItem icon button onPress={this.onItemPress.bind(this,'quit')}>
             <Left>
-              <Button style={{ backgroundColor: '#FF9501' }}>
-                <Icon active name="plane" />
-              </Button>
+                <Icon name="paper-plane" style={{color:'red'}}/>
             </Left>
             <Body>
               <Text style={{color:'red'}}>退出登录</Text>
