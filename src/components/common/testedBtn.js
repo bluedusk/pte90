@@ -15,6 +15,10 @@ class TestedBtn extends React.Component {
       clicked:false
     }
   }
+
+  componentWillReceiveProps(props){
+    this.setState({active:props.active,tested:props.tested})
+  }
   onTestedBtnPress(){
     this.setState({active:!this.state.active});
     if(this.state.active){

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Footer, Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { PagerBtnSet } from '../common/pagerBtnSet';
+import TestedBtn from '../common/testedBtn';
 
 
 import styles from '../../styles/itemsMainStyle';
@@ -34,6 +35,7 @@ class ItemDetail extends React.Component {
     const { array } = this.props.itemList;
     const item = array[this.state.itemIndex];
     const itemArray = _.split(item.itemText, "#");
+    console.log(this.props.itemType);
     const fibText = [];
     itemArray.forEach((item)=>{
         if (item.indexOf("@")>=0) {
@@ -71,10 +73,15 @@ class ItemDetail extends React.Component {
         </CardItem>
         <CardItem style={{paddingVertical: 0}}>
           <Left>
-            <Button transparent>
+            {/* <Button transparent>
               <Icon active name="thumbs-up" />
               <Text>  {item.tested} 考过</Text>
-            </Button>
+            </Button> */}
+            <TestedBtn
+              active={item.active}
+              tested={item.tested}
+              itemId={item.itemId}
+            />
           </Left>
           <Right>
             <Button transparent>

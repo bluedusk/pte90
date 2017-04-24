@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-
+import TestedBtn from '../common/testedBtn';
 import styles from '../../styles/itemsMainStyle';
 
 // Common component for item list with content[ra,rs,choice,wfd]
@@ -40,10 +40,15 @@ class ItemListContent extends React.Component {
           </CardItem> */}
           <CardItem style={{paddingVertical: 0}}>
             <Left>
-              <Button transparent>
+              {/* <Button transparent>
                 <Icon active name="thumbs-up" />
                 <Text>  {item.tested} 考过</Text>
-              </Button>
+              </Button> */}
+              <TestedBtn
+                active={item.active}
+                tested={item.tested}
+                itemId={item.itemId}
+              />
             </Left>
             <Right>
               {/* <Button transparent>

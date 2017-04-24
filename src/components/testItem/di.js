@@ -5,6 +5,7 @@ import { Image } from 'react-native';
 import { Footer, Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { PagerBtnSet } from '../common/pagerBtnSet';
+import TestedBtn from '../common/testedBtn';
 
 import styles from '../../styles/itemsMainStyle';
 
