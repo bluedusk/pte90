@@ -145,7 +145,9 @@ class PositionTransfer extends React.Component {
               <Title>考位转让</Title>
             </Body>
             <Right>
-              <Button transparent onPress={()=>{Actions['positionNew']({user:this.props.user})}}><Text>Add</Text></Button>
+              <Button transparent onPress={()=>{Actions['positionNew']({user:this.props.user})}}>
+                <Text style={{fontSize:25}}>+</Text>
+              </Button>
             </Right>
         </Header>
         <Content padder>

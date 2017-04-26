@@ -5,6 +5,7 @@ import { Image } from 'react-native';
 import { Footer, Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { PagerBtnSet } from '../common/pagerBtnSet';
+import TestedBtn from '../common/testedBtn';
 
 import styles from '../../styles/itemsMainStyle';
 
@@ -36,18 +37,10 @@ class DI extends React.Component {
     }
     return(
       <Card style={styles.mb}>
-        <CardItem header bordered>
-          <Left>
-          </Left>
-          <Body>
-            <Title>{array[this.state.itemIndex].topic}</Title>
-          </Body>
-          <Right>
-          </Right>
-        </CardItem>
-        <CardItem cardBody style={{flex:1}}>
-          <Image style={{ resizeMode: 'contain', flex: 1 }}
-              source={{uri:array[this.state.itemIndex].imageSrc}}
+
+        <CardItem style={{flex:1,}}>
+          <Image style={{resizeMode: 'contain', height:500, flex:1, marginTop:20,transform:[{scale:1.5},{rotate: '90 deg'}]}}
+            source={{uri:array[this.state.itemIndex].imageSrc}}
 //             source={[
 //   {uri: 'https://facebook.github.io/react/img/logo_small.png', width: 38, height: 38},
 //   {uri: 'https://facebook.github.io/react/img/logo_small_2x.png', width: 76, height: 76},

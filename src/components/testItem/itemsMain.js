@@ -152,49 +152,49 @@ class ItemsMain extends React.Component {
     if(this.state.toggle === 4){
       return(
       <View>
-        <CardItem>
+        <CardItem button onPress={()=>{this.props.fetchItems('dic')}}>
           <Text>Dictation</Text>
           <Right>
             <Icon name="arrow-forward" />
           </Right>
         </CardItem>
-        <CardItem>
+        <CardItem button onPress={()=>{this.props.fetchItems('sst')}}>
           <Text>Summarize Spoken Text</Text>
           <Right>
             <Icon name="arrow-forward" />
           </Right>
         </CardItem>
-        <CardItem>
+        <CardItem button onPress={()=>{this.props.fetchItems('lsc')}}>
           <Text>Single Choice</Text>
           <Right>
             <Icon name="arrow-forward" />
           </Right>
         </CardItem>
-        <CardItem>
+        <CardItem button onPress={()=>{this.props.fetchItems('lmc')}}>
           <Text>Multi Choice</Text>
           <Right>
             <Icon name="arrow-forward" />
           </Right>
         </CardItem>
-        <CardItem>
+        <CardItem button onPress={()=>{this.props.fetchItems('smw')}}>
           <Text>Select Missing Word</Text>
           <Right>
             <Icon name="arrow-forward" />
           </Right>
         </CardItem>
-        <CardItem>
+        <CardItem button onPress={()=>{this.props.fetchItems('scs')}}>
           <Text>Select Correct Summary</Text>
           <Right>
             <Icon name="arrow-forward" />
           </Right>
         </CardItem>
-        <CardItem>
+        <CardItem button onPress={()=>{this.props.fetchItems('lfib')}}>
           <Text>Fill in Blanks</Text>
           <Right>
             <Icon name="arrow-forward" />
           </Right>
         </CardItem>
-        <CardItem>
+        <CardItem button onPress={()=>{this.props.fetchItems('siw')}}>
           <Text>Select Incorrect Words</Text>
           <Right>
             <Icon name="arrow-forward" />
@@ -223,7 +223,7 @@ class ItemsMain extends React.Component {
 
         <Card>
           <CardItem header bordered button onPress={()=>this.onToggle(1)}>
-            <Icon active name="logo-facebook" style={{ color: '#3B579D' }} />
+            <Icon active name="microphone" style={{ color: '#3B579D' }} />
             <Text>
               Speaking
             </Text>
@@ -236,7 +236,7 @@ class ItemsMain extends React.Component {
 
         <Card>
           <CardItem header bordered button onPress={()=>this.onToggle(2)}>
-            <Icon active name="logo-linkedin" style={{ color: '#007BB6' }} />
+            <Icon active name="grid" style={{ color: '#007BB6' }} />
             <Text>
               Writing
             </Text>
@@ -249,7 +249,7 @@ class ItemsMain extends React.Component {
 
         <Card>
           <CardItem header bordered button onPress={()=>this.onToggle(3)}>
-            <Icon active name="logo-youtube" style={{ color: '#D62727' }} />
+            <Icon active name="paper" style={{ color: '#D62727' }} />
             <Text>
               Reading
             </Text>
@@ -262,7 +262,7 @@ class ItemsMain extends React.Component {
 
         <Card>
           <CardItem header bordered button onPress={()=>this.onToggle(4)}>
-            <Icon active name="logo-youtube" style={{ color: '#D62727' }} />
+            <Icon active name="play" style={{ color: '#D62727' }} />
             <Text>
               Lisening
             </Text>

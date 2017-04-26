@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Header, Title, Text, Button, Container, Content, Card, CardItem, Icon, Right, Left, Body } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import TestedBtn from '../common/testedBtn';
 
 import styles from '../../styles/itemsMainStyle';
 
@@ -31,10 +32,11 @@ class EssayList extends React.Component {
           </CardItem>
           <CardItem style={{paddingVertical: 0}}>
             <Left>
-              <Button transparent>
-                <Icon active name="thumbs-up" />
-                <Text>  {item.tested} 考过</Text>
-              </Button>
+              <TestedBtn
+                active={item.active}
+                tested={item.tested}
+                itemId={item.itemId}
+              />
             </Left>
             <Right>
               <Button transparent onPress={()=>{Actions['essaySamples']({id:item.itemId, samples:item.essaySample})}}>
@@ -62,7 +64,7 @@ class EssayList extends React.Component {
               <Title>Essay</Title>
             </Body>
             <Right>
-              <Button transparent onPress={()=>{Actions['newItem']()}}><Text>Add</Text></Button>
+              <Button transparent onPress={()=>{Actions['newItem']({itemType:this.props.itemType})}}><Text>Add</Text></Button>
             </Right>
         </Header>
         <Content padder>

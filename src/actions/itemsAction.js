@@ -17,7 +17,7 @@ export const fetchItems = (type) => {
       Actions['readAloud']({itemType:type,header:'Read Aloud'});
       break;
     case 'rl':
-      Actions['retellLecture']({itemType:type,header:'Retell Leture'});
+      Actions['itemList']({itemType:type,header:'Retell Leture'});
       break;
     case 'di':
       Actions['diAlbum']({itemType:type,header:'Describe Image'});
@@ -26,25 +26,49 @@ export const fetchItems = (type) => {
       Actions['asqList']({itemType:type,header:'ASQ'});
       break;
     case 'rs':
-      Actions['rs']();
+    Actions['itemListContent']({itemType:type,header:'Repeat Sentence'});
       break;
     case 'rfib':
       Actions['itemList']({itemType:type,header:'FIB'});
       break;
     case 'rsc':
-      Actions['itemListContent']({header:'Single Choice'});
+      Actions['itemListContent']({itemType:type,header:'Single Choice'});
       break;
     case 'rmc':
-      Actions['itemListContent']({header:'Multi Choice'});
+      Actions['itemListContent']({itemType:type,header:'Multi Choice'});
       break;
     case 'reorder':
       Actions['itemList']({itemType:type,header:'Reorder'});
       break;
     case 'swt':
-      Actions['itemList']({header:'SWT'});
+      Actions['itemList']({itemType:type,header:'SWT'});
       break;
     case 'essay':
-      Actions['essayList']({header:'Essay'});
+      Actions['essayList']({itemType:type,header:'Essay'});
+      break;
+    case 'dic':
+      Actions['itemListContent']({itemType:type,header:'Dictation'});
+      break;
+    case 'sst':
+      Actions['itemList']({itemType:type,header:'SST'});
+      break;
+    case 'lsc':
+      Actions['itemListContent']({itemType:type,header:'Single Choice'});
+      break;
+    case 'lmc':
+      Actions['itemListContent']({itemType:type,header:'Multi Choice'});
+      break;
+    case 'smw':
+      Actions['itemListContent']({itemType:type,header:'Missing Word'});
+      break;
+    case 'scs':
+      Actions['itemListContent']({itemType:type,header:'Summary'});
+      break;
+    case 'lfib':
+      Actions['itemListContent']({itemType:type,header:'FIB'});
+      break;
+    case 'siw':
+      Actions['itemListContent']({itemType:type,header:'Incorrect Word'});
       break;
     default:
   }

@@ -51,7 +51,7 @@ class Position extends React.Component {
           {/* { this.renderList() } */}
           <Card style={styles.mb}>
             <CardItem header bordered button onPress={() => Linking.openURL("http://pearsonvue.com/Dispatcher?application=SeatSearch&action=actStartApp&v=W2L&clientCode=PEARSONLANGUAGE")}>
-              <Icon active name="paper" style={{ color: '#3B579D' }} />
+              <Icon active name="disc" style={{ color: '#3B579D' }} />
               <Text>考位查询</Text>
               <Right>
                 <Icon name="arrow-forward" />
@@ -60,7 +60,7 @@ class Position extends React.Component {
           </Card>
           <Card style={styles.mb}>
             <CardItem header bordered button onPress={this.onItemPress.bind(this)}>
-              <Icon active name="navigate" style={{ color: 'red' }} />
+              <Icon active name="shuffle" style={{ color: 'red' }} />
               <Text>考位转让</Text>
               <Right>
                 <Icon name="arrow-forward" />
