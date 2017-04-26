@@ -98,7 +98,7 @@ class ReorderDetail extends React.Component {
               <Title>{this.props.header}</Title>
             </Body>
             <Right>
-              <Button transparent onPress={()=>{Actions['newItem']()}}><Text>Add</Text></Button>
+              {/* <Button transparent onPress={()=>{Actions['newItem']()}}><Text>Add</Text></Button> */}
             </Right>
         </Header>
         <Content padder>

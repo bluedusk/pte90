@@ -135,8 +135,6 @@ class UserItems extends React.Component {
             <Button transparent>
               <Icon active name="thumbs-up" />
               <Text>  {item.tested} 考过</Text>
-              <Icon active name="thumbs-up" />
-              <Text>  {item.tested} 考过</Text>
             </Button>
           </Left>
             { this.renderDeleteBtn(item) }
