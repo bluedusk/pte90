@@ -109,11 +109,7 @@ class NewItem extends React.Component {
           </Form>
         </Card>
         <Segment>
-            <Button first onPress={()=> Toast.show({
-              text: 'Wrong password!',
-              position: 'center',
-              buttonText: 'Okay'
-            })}><Text>原文</Text></Button>
+            <Button first><Text>原文</Text></Button>
             <Button last active><Text>答案</Text></Button>
         </Segment>
           <Text numberOfLines={40}>

@@ -4,19 +4,19 @@ import {
 } from '../actions/types';
 
 const INITIAL_STATE = {
-  info: {points:0},
   error: '',
   loading: false,
-  user:{} // current user, shared in all container
+  info:{}, // current user, shared in all container
+  points:0
 };
 
 export default (state = INITIAL_STATE, action) => {
-  console.log(action.payload);
   switch (action.type) {
     case FETCH_USER:
-      return { ...state, info: action.payload.resBody };
+      return { ...state, info: action.payload };
     case USER_LOGIN:
-      return { ...state, user: action.payload };
+      let xxx = { ...state, info: action.payload, points: action.payload.points}
+      return xxx;
     default:
       return state;
   }

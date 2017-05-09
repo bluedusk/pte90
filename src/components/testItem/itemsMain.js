@@ -35,7 +35,6 @@ class ItemsMain extends React.Component {
      //
      this.props.userLogin();
      var value = await AsyncStorage.getItem('@user:key');
-     console.dir(value.toString());
 
    }catch (error){
 
@@ -142,6 +141,7 @@ class ItemsMain extends React.Component {
             <Icon name="arrow-forward" />
           </Right>
         </CardItem>
+
       </View>
     );
     } else {
@@ -223,7 +223,7 @@ class ItemsMain extends React.Component {
 
         <Card>
           <CardItem header bordered button onPress={()=>this.onToggle(1)}>
-            <Icon active name="microphone" style={{ color: '#3B579D' }} />
+            <Icon active name="microphone" style={{ color: '#3B579D' ,fontSize:25}} />
             <Text>
               Speaking
             </Text>
@@ -236,7 +236,7 @@ class ItemsMain extends React.Component {
 
         <Card>
           <CardItem header bordered button onPress={()=>this.onToggle(2)}>
-            <Icon active name="grid" style={{ color: '#007BB6' }} />
+            <Icon active name="grid" style={{ color: '#007BB6' , fontSize:25}} />
             <Text>
               Writing
             </Text>
@@ -249,7 +249,7 @@ class ItemsMain extends React.Component {
 
         <Card>
           <CardItem header bordered button onPress={()=>this.onToggle(3)}>
-            <Icon active name="paper" style={{ color: '#D62727' }} />
+            <Icon active name="paper" style={{ color: '#D62727',fontSize:25 }} />
             <Text>
               Reading
             </Text>
@@ -262,7 +262,7 @@ class ItemsMain extends React.Component {
 
         <Card>
           <CardItem header bordered button onPress={()=>this.onToggle(4)}>
-            <Icon active name="play" style={{ color: '#D62727' }} />
+            <Icon active name="play" style={{ color: '#D62727',fontSize:25 }} />
             <Text>
               Lisening
             </Text>

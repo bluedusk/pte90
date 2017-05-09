@@ -1,10 +1,14 @@
 
 import React, { Component } from 'react';
+import { AsyncStorage } from 'react-native';
+
 // import { StyleSheet } from 'react-native';
 //import CodePush from 'react-native-code-push';
 
 // import { Container, Content, Text, View } from 'native-base';
 //import Modal from 'react-native-modalbox';
+
+import * as WeChat from 'react-native-wechat';
 
 import AppRoutes from './AppRoutes';
 //import ProgressBar from './components/loaders/ProgressBar';
@@ -37,7 +41,19 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
+
+  componentWillMount(){
+    console.log('app component will mount');
+  }
+  async componentDidMount() {
+    console.log('app component did mount');
+    // register wechat
+    try {
+        await WeChat.registerApp('wx7152258bd87002b3');
+      } catch (e) {
+        console.error(e);
+      }
+
     // CodePush.sync({ updateDialog: true, installMode: CodePush.InstallMode.IMMEDIATE },
     //   (status) => {
     //     switch (status) {
@@ -91,6 +107,8 @@ class App extends Component {
     //     </Container>
     //   );
     // }
+
+
 
     return <AppRoutes />;
   }

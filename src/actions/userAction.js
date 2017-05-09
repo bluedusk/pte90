@@ -3,7 +3,7 @@ import {
   FETCH_USER,
   USER_LOGIN
 } from './types';
-import { FETCHUSER_URL } from './config';
+import { USER_URL } from './config';
 import { AsyncStorage } from 'react-native';
 
 export const fetchUser = (type) => {
@@ -14,7 +14,7 @@ export const fetchUser = (type) => {
       //   type: FETCH_ITEMS,
       //   payload: {},
       // });
-      const response = await fetch(FETCHUSER_URL);
+      const response = await fetch(USER_URL);
       const responseJson = await response.json()
       // console.log(responseJson);
       dispatch({
@@ -53,5 +53,54 @@ export const userLogin = () => {
 
     }
 
+  };
+};
+export const pointsUpdate = (user,type) => {
+
+  //var value = await AsyncStorage.getItem('@user:key');
+  // let Today = new Date();
+  // let todayStr = Today.getFullYear() +"-"+ (Today.getMonth()+1) +"-"+ Today.getDate();
+  // switch (type) {
+  //   case -1:
+  //     let logonCost = await AsyncStorage.getItem('@logonCost:key');
+  //     if (logonCost == todayStr) {
+  //       // return;
+  //     } else {
+  //       await AsyncStorage.setItem('@logonCost:key', todayStr);
+  //     }
+  //     break;
+  //   case 1:
+  //     let shareAward = await AsyncStorage.getItem('@shareAward:key');
+  //     if (shareAward == todayStr) {
+  //       return;
+  //     } else {
+  //       await AsyncStorage.setItem('@shareAward:key', todayStr);
+  //     }
+  //     break;
+  //   default:
+  //     return;
+  // }
+
+  return async (dispatch) => {
+    try {
+      const response = await fetch(`${USER_URL}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(user)
+        }
+      );
+      console.log(response);
+      dispatch({
+        type: USER_LOGIN,
+        payload: user
+      });
+
+    } catch (e) {
+      console.log(e);
+    }
   };
 };

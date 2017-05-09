@@ -33,6 +33,7 @@ import ExpDetail from './components/discover/expDetail';
 import ExpNew from './components/discover/expNew';
 import UserItems from './components/testItem/userItems';
 import PointsRule from './components/me/pointsRule';
+import Login from './components/login';
 
 
 // import ItemsMain from '.././js/components/Header/1';
@@ -54,7 +55,8 @@ class AppRoutes extends Component {
 
           <RouterWithRedux>
             <Scene key='root' hideNavBar>
-              <Scene key="tab1" component={ItemsMain} hideNavBar title="机经" initial={true} type="replace"/>
+              <Scene key="login" component={Login} hideNavBar title="登录" initial={true} type="replace"/>
+              <Scene key="tab1" component={ItemsMain} hideNavBar title="机经" type="replace"/>
               <Scene key="tab4" component={UserCenter} title="Tab4" type="replace"/>
               <Scene key="position" component={Position} title="Position" type="replace"/>
               <Scene key="discover" component={Discover} title="Discover" type="replace"/>

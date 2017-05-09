@@ -43,7 +43,10 @@ class UserCenter extends Component {
   componentDidMount(){
     console.log("user center componentDidMount");
   // query user info
-    this.props.fetchUser();
+  //  this.props.fetchUser();
+  }
+  componentWillReceiveProps(props){
+    console.log('component will receive props');
   }
 
   onValueChange(value: string) {
@@ -70,6 +73,13 @@ class UserCenter extends Component {
         // TODO hardcode user
         Actions.pointsRule({user:this.state.user});
         break;
+      case 'clear':
+        AsyncStorage.clear();
+        break;
+      case 'quit':
+        AsyncStorage.removeItem("'@user:key'");
+        Actions['login']();
+        break;
       default:
     }
   }
@@ -81,14 +91,14 @@ class UserCenter extends Component {
           <Left>
           </Left>
           <Body>
-            <Text>{this.props.user.user.name}</Text>
+            <Text>{this.props.user.info.name}</Text>
           </Body>
           <Right />
         </Header>
 
         <Content>
           <Thumbnail style={{width: 100, height: 100, borderRadius: 50, alignSelf:'center', marginTop: 20, marginBottom: 5}} source={{uri:"http://www.izhufu.net/uploads/userup/150731/bd_14383313661746.jpg"}} />
-          <Text style={{alignSelf:'center',color:'grey', marginBottom:10}}>积分:{this.props.user.user.points}</Text>
+          <Text style={{alignSelf:'center',color:'grey', marginBottom:10}}>积分:{this.props.user.info.points}</Text>
 
           <Separator bordered noTopBorder/>
           {/* <ListItem avatar>
@@ -168,6 +178,17 @@ class UserCenter extends Component {
             </Left>
             <Body>
               <Text style={{color:'red'}}>退出登录</Text>
+            </Body>
+            <Right>
+              {(Platform.OS === 'ios') && <Icon active name="arrow-forward" />}
+            </Right>
+          </ListItem>
+          <ListItem icon button onPress={this.onItemPress.bind(this,'clear')}>
+            <Left>
+                <Icon name="paper-plane" style={{color:'red'}}/>
+            </Left>
+            <Body>
+              <Text style={{color:'red'}}>清空缓存</Text>
             </Body>
             <Right>
               {(Platform.OS === 'ios') && <Icon active name="arrow-forward" />}
